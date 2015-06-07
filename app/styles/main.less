@@ -1,7 +1,123 @@
 @import "bower_components/kube/less/kube.less";
 @import "fonts.less";
 
+@maincolor: #f35626;
+
 body {
   font-family: 'Roboto';
   font-weight: 300;
+}
+
+.hide {
+  display: none;
+}
+
+#welcome {
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  text-align: center;
+  transform: translate(-40%, -50%);
+  h1 {
+    font-family: 'Roboto';
+    font-size: 120px;
+    font-weight: 100;
+    margin-bottom: 0;
+    color: @maincolor;
+  }
+  p {
+    font-size: 20px;
+    margin-top: 0;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  button, .field{
+    border: 1px solid @maincolor;
+    background-color: white;
+    padding: 15px 50px;
+    height: 60px;
+    border-radius: 40px;
+    color: @maincolor;
+    font-size: 20px;
+    -webkit-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+       -moz-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+         -o-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+  }
+
+  .field {
+    width: 250px;
+    margin: 1px auto;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+       -moz-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+         -o-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+    i {
+      &.icons {
+        position: absolute;
+        left: 0px;
+        font-size: 30px;
+        border: 1px solid @maincolor;
+        padding: 12px;
+        border-radius: 40px;
+        margin-top: -15px;
+        -webkit-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+           -moz-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+             -o-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+                transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+      }
+      &.submit {
+        right: 11px;
+        position: absolute;
+        background-color: #eee;
+        padding: 6px 9px;
+        border-radius: 45px;
+        margin-top: -5px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      &.ishadow {
+        &:before {
+          content: ' '
+        }
+        padding: 28px 29px;
+        position: absolute;
+        left: 0;
+        border-radius: 40px;
+        margin-top: -15px;
+        border: 1px solid lighten(@maincolor, 20%);
+      }
+    }
+
+    label {
+      position: absolute;
+      left: 76px;
+      z-index: 5;
+      margin-top: -11px;
+      color: #888;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    input {
+      border: none;
+      position: absolute;
+      left: 70px;
+      background: transparent;
+      margin-top: 2px;
+      font-size: 18px;
+      color: @maincolor;
+      font-family: 'Roboto Mono';
+      width: 108px;
+      &:focus {
+        border-color: white;
+        box-shadow: none
+      }
+    }
+  }
 }
