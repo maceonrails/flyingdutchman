@@ -1,15 +1,14 @@
 @import "bower_components/kube/less/kube.less";
 @import "fonts.less";
 
-@maincolor: #f35626;
-
-body {
-  font-family: 'Roboto';
-  font-weight: 300;
-}
+@maincolor: #E25A5D;
 
 .hide {
   display: none;
+}
+
+body.dashboard {
+  background-color: #F4F7FA;
 }
 
 #welcome {
@@ -117,6 +116,64 @@ body {
       &:focus {
         border-color: white;
         box-shadow: none
+      }
+    }
+  }
+}
+
+.navbar.fixed {
+  border-bottom: 1px solid #ccc;
+  box-shadow: 1px -1px 5px #ccc;
+  padding: 32px 20px 31px 120px;
+  position: fixed;
+  width: 100%;
+  background-color: #FFF;
+  z-index: 10;
+
+  i {
+    font-size: 25px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+}
+
+.sidebar {
+  background: #353843 none repeat scroll 0 0;
+  bottom: 0;
+  position: fixed;
+  top: 0;
+  width: 100px;
+  z-index: 12;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    li {
+      padding: 15px 10px;
+      text-align: center;
+      cursor: pointer;
+
+      &.active, &:hover {
+        background-color: @maincolor;
+        p, i {
+          color: #FFF;
+        }
+      }
+      &:hover {
+        background-color: darken(@maincolor, 5%)
+      }
+
+
+      p, i {
+        color: #6B7482;
+      }
+      p {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+      i {
+        font-size: 35px;
       }
     }
   }

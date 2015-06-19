@@ -9,21 +9,19 @@ App
       .state('app', {
         url: '',
         abstract: true,
-        template: '<div ui-view></div>',
-        controller: function(localStorageService, $state){
-          var token = localStorageService.get('token');
-          if (token === null){
-            $state.go('welcome');
-          }
-        }
+        templateUrl: 'views/layouts/application.html',
+        controller: 'MainCtrl',
+        params: { token: null }
       })
         .state('app.dashboard', {
           url: '/dashboard',
           templateUrl: 'views/dashboard/index.html',
+          controller: 'DashboardCtrl'
         })
 
       .state('welcome', {
         url: '/welcome',
-        templateUrl: 'views/auth/index.html'
+        templateUrl: 'views/auth/index.html',
+        controller: 'AuthCtrl'
       });
   });
