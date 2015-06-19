@@ -86,7 +86,7 @@ App
     return {
       restrict: 'A',
       link: function (scope, element) {
-        element.bind('click', function (key) {
+        element.bind('click', function () {
           element.addClass('hide').next().removeClass('hide');
           jQuery('.one').find('input').focus();
         });
@@ -97,7 +97,7 @@ App
     return {
       restrict: 'A',
       link: function (scope, element, attr) {
-        element.bind('click', function (key) {
+        element.bind('click', function () {
           var input = element.before();
           loginInputSubmit(input, attr.btnStep, scope);
         });

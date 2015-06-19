@@ -8,30 +8,22 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('MainCtrl', function ($rootScope, localStorageService, $state, User, $timeout, $stateParams) {
-    $rootScope.$state = $state;
-    $rootScope.token  = $stateParams.token; // set token from params
-    $rootScope.user   = {};
+  .controller('MainCtrl',
+    function ($rootScope, localStorageService, $state, currentUser, $timeout, $stateParams) {
+      $rootScope.$state = $state;
+      $rootScope.token  = $stateParams.token; // set token from params
+      $rootScope.user   = currentUser;
 
-    var token = localStorageService.get('token');
-    if (token === null){
-      $state.go('welcome');
-    };
-
-    $rootScope.doLogout = function(){
-      delete $rootScope.token;
-      localStorageService.remove('token');
-      $timeout(function () {
+      var token = localStorageService.get('token');
+      if (token === null){
         $state.go('welcome');
-      }, 100);
-    };
+      }
 
-    User.me()
-      .then(function(response){
-        $rootScope.user = response.user;
-      }, function(){
+      $rootScope.doLogout = function(){
+        delete $rootScope.token;
+        localStorageService.remove('token');
         $timeout(function () {
           $state.go('welcome');
         }, 100);
-      });
+      };
   });
