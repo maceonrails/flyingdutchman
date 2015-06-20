@@ -10,5 +10,4 @@
 angular.module('erestoApp')
   .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams) {
     $rootScope.token = $stateParams.token; // set token from params
-
   });

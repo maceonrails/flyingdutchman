@@ -8,6 +8,7 @@ angular.module('erestoApp')
           .then(function() {
             var isAuthenticated = Cancan.isAuthenticated();
             if (
+              $rootScope.toState.data !== undefined &&
               $rootScope.toState.name !== 'app.dashboard' &&
               $rootScope.toState.data.roles &&
               $rootScope.toState.data.roles.length > 0 &&

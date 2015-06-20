@@ -8,7 +8,8 @@ var App = angular
     'ngSanitize',
     'ngTouch',
     'LocalStorageModule',
-    'restangular'
+    'restangular',
+    'angularify.semantic'
   ]);
 
 App
@@ -25,7 +26,7 @@ App
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
-  .service('APIInterceptor', function($rootScope, localStorageService, $q) {
+  .service('APIInterceptor', function($rootScope, localStorageService, $q, $injector) {
     var service = this;
 
     service.request = function(config) {
@@ -41,6 +42,16 @@ App
 
       config.params.token = token;
       return config || $q.when(config);
+    };
+
+    service.responseError = function(rejection) {
+      if (rejection.status === 401) {
+        localStorageService.set('token', null);
+        $injector.get('$state').transitionTo('welcome');
+        return $q.reject(rejection);// return to login page
+      }else {
+        return $q.reject(rejection);
+      }
     };
 
     service.response = function(response) {

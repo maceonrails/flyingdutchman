@@ -29,17 +29,17 @@ App
           abstract: true,
           resolve: {
             authorize: function(Authenticate) {
-              return Authenticate.authorize();
+              return Authenticate.authorize(true);
             }
           },
-          templateUrl: 'views/layouts/application.html'
+          template: '<div ui-view> </div>'
         })
           .state('app.restricted.users', {
             url: 'users',
             data: {
               roles: ['eresto']
             },
-            templateUrl: 'views/dashboard/index.html'
+            templateUrl: 'views/users/index.html'
           })
 
 

@@ -1,6 +1,23 @@
 <nav class="navbar fixed">
-    <ul class="right">
-        <li>Welcome, {{user.email}}</li>
-        <li ng-click="doLogout()"><i class="icon-logout"></i></li>
-    </ul>
+  <ul class="left">
+    <li><i class="icon-arrow-left"></i></li>
+    <li>Page 1</li>
+    <li><i class="icon-arrow-right"></i></li>
+    <li>
+      <div class="ui small icon input">
+        <input placeholder="Search..." type="text">
+        <i class="search link icon"></i>
+      </div>
+    </li>
+    <li>
+      <div class="ui red button">
+        <i class="add icon"></i>
+        <span>Add New</span>
+      </div>
+    </li>
+  </ul>
+  <ul class="right">
+    <li>Welcome, {{user.email}}</li>
+    <li ng-click="doLogout()"><i class="icon-logout"></i></li>
+  </ul>
 </nav>

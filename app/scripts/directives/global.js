@@ -119,4 +119,24 @@ App
         });
       }
     };
+  })
+  .directive('contentWorkspace', function ($window) {
+    return {
+      restrict: 'C',
+      link: function (scope, element) {
+        var wHeight = $window.innerHeight - 108;
+        jQuery(element).css('min-height',wHeight +'px');
+      }
+    };
+  })
+  .directive('pickaday', function ($window) {
+    return {
+      restrict: 'C',
+      link: function (scope, element) {
+        new Pikaday({
+          field: jQuery(element)[0],
+          format: 'ddd, D MMM YYYY'
+        });
+      }
+    };
   });

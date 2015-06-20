@@ -376,6 +376,14 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/Semantic-UI-LESS/themes/default/assets',
+          dest: '<%= yeoman.dist %>/themes/default/assets',
+          src: [
+            'fonts/**/*'
+          ]
         }]
       },
       styles: {
@@ -383,12 +391,24 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      development: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/Semantic-UI-LESS/themes/default/assets',
+          dest: '.tmp/themes/default/assets',
+          src: [
+            'fonts/**/*'
+          ]
+        }]
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'copy:development',
         'copy:styles'
       ],
       test: [
