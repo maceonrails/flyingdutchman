@@ -14,7 +14,7 @@ App
         params: { token: null },
         resolve: {
           currentUser: function(Cancan){
-            return Cancan.identity();
+            return Cancan.identity(true);
           }
         }
       })
@@ -29,7 +29,7 @@ App
           abstract: true,
           resolve: {
             authorize: function(Authenticate) {
-              return Authenticate.authorize(true);
+              return Authenticate.authorize();
             }
           },
           template: '<div ui-view> </div>'

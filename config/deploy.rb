@@ -11,14 +11,14 @@ set :rails_env,       'staging'
 set :domain,          '104.215.153.222'
 # set :port,            37894
 
-set :deploy_to,       "/home/azureuser/Project/backend/#{rails_env}"
+set :deploy_to,       "/home/azureuser/Project/frontend"
 set :app_path,        "#{deploy_to}/#{current_path}"
 
-set :repository,      'https://github.com/evandavid/kraken.git'
+set :repository,      'https://github.com/evandavid/flyingdutchman.git'
 set :brach,           'master'
 
 set :user,            'azureuser'
-set :shared_paths,    ['public/static', 'tmp']
+# set :shared_paths,    ['public/static', 'tmp']
 set :keep_releases,   5
 
 #                                                                    Setup task
@@ -35,51 +35,16 @@ desc "deploys the current version to the server."
 task :deploy => :environment do
   deploy do
     invoke 'git:clone'
-    invoke 'bundle:install'
-    invoke 'rails:db_migrate'
-    invoke 'rails:assets_precompile'
-    invoke 'deploy:link_shared_paths'
 
     to :launch do
-      invoke :'unicorn:restart'
+      # queue 'source ~/.nvm/nvm.sh'
+      # queue 'export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/home/dos/.nvm/versions/node/v0.12.2/lib/node_modules'
+      # queue '/home/azureuser/.nvm/versions/node/v0.12.4/bin/npm install grunt-cli -g'
+      queue '/home/azureuser/.nvm/versions/node/v0.12.4/bin/npm install'
+      queue '/home/azureuser/.nvm/versions/node/v0.12.4/bin/bower install'
+      queue '/home/azureuser/.nvm/versions/node/v0.12.4/bin/grunt build'
+      queue "/home/azureuser/.nvm/versions/node/v0.12.4/bin/http-server #{app_path}/dist -p 9000"
     end
   end
 end
 
-
-#                                                                       Unicorn
-# ==============================================================================
-namespace :unicorn do
-  set :unicorn_pid, "#{app_path}/tmp/pids/unicorn.pid"
-  set :start_unicorn, %{
-    cd #{app_path}
-    bundle exec unicorn -c #{app_path}/config/unicorn/#{rails_env}.rb -E #{rails_env} -D
-  }
-
-#                                                                    Start task
-# ------------------------------------------------------------------------------
-  desc "Start unicorn"
-  task :start => :environment do
-    queue 'echo "-----> Start Unicorn"'
-    queue! start_unicorn
-  end
-
-#                                                                     Stop task
-# ------------------------------------------------------------------------------
-  desc "Stop unicorn"
-  task :stop do
-    queue 'echo "-----> Stop Unicorn"'
-    queue! %{
-      test -s "#{unicorn_pid}" && kill -QUIT `cat "#{unicorn_pid}"` && echo "Stop Ok" && exit 0
-      echo >&2 "Not running"
-    }
-  end
-
-#                                                                  Restart task
-# ------------------------------------------------------------------------------
-  desc "Restart unicorn using 'upgrade'"
-  task :restart => :environment do
-    invoke 'unicorn:stop'
-    invoke 'unicorn:start'
-  end
-end
