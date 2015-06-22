@@ -22,7 +22,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:3000/v1');
+      .setBaseUrl('https://api.eresto.io/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })

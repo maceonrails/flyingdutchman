@@ -66,12 +66,12 @@ module.exports = function (grunt) {
     less: {
       development: {
         files: {
-          '.tmp/styles/main.css': 'app/styles/main.less'
+          '.tmp/styles/application.css': 'app/styles/main.less'
         }
       },
       production: {
         files: {
-          'dist/styles/main.css': 'app/styles/main.less'
+          '.tmp/styles/application.css': 'app/styles/main.less'
         }
       }
     },
@@ -232,7 +232,7 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '!<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
     },
@@ -467,6 +467,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'injector',
+    'less:production',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
