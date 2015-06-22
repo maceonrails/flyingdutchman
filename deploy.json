@@ -1,0 +1,18 @@
+{
+  "server": "azureuser@104.215.153.222",
+  "port": 22,
+  "server_dir": "/home/azureuser/Project/frontend",
+  "repo": "https://github.com/evandavid/flyingdutchman.git",
+  "prj_git_relative_dir": "",
+  "branch": "master",
+  "force_regenerate_git_dir": true,
+  "shared_dirs": [
+    "node_modules",
+    "bower_components"
+  ],
+  "prerun": [
+    "sudo npm install",
+    "bower install"
+  ],
+  "run_cmd": "grunt build"
+}
