@@ -39,7 +39,8 @@ App
             data: {
               roles: ['eresto']
             },
-            templateUrl: 'views/users/index.html'
+            templateUrl: 'views/users/index.html',
+            controller: 'UsersCtrl'
           })
 
 

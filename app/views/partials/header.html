@@ -1,5 +1,5 @@
 <nav class="navbar fixed">
-  <ul class="left">
+  <ul class="left" ng-if="stateWithList.indexOf(state.current.name) >= 0">
     <li><i class="icon-arrow-left"></i></li>
     <li>Page 1</li>
     <li><i class="icon-arrow-right"></i></li>
@@ -10,7 +10,7 @@
       </div>
     </li>
     <li>
-      <div class="ui red button">
+      <div class="ui red button" ng-click="addNew()">
         <i class="add icon"></i>
         <span>Add New</span>
       </div>

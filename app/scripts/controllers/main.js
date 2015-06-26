@@ -10,9 +10,11 @@
 angular.module('erestoApp')
   .controller('MainCtrl',
     function ($rootScope, localStorageService, $state, currentUser, $timeout, $stateParams) {
-      $rootScope.$state = $state;
-      $rootScope.token  = $stateParams.token; // set token from params
-      $rootScope.user   = currentUser;
+      $rootScope.$state        = $state;
+      $rootScope.token         = $stateParams.token; // set token from params
+      $rootScope.user          = currentUser;
+      $rootScope.stateWithList = ['app.restricted.users'];
+      $rootScope.state         = $state;
 
       var token = localStorageService.get('token');
       if (token === null){

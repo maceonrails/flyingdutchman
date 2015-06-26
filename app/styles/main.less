@@ -162,10 +162,11 @@ body.dashboard {
         display: inline-block;
         position: absolute;
         top: 23px;
+        padding: 15px 20px;
         background-color: @maincolor;
         span {
           display: inline-block;
-          margin-top: -13px;
+          margin-top: -6px;
           vertical-align: middle;
         }
       }
@@ -176,6 +177,9 @@ body.dashboard {
     font-size: 25px;
     vertical-align: middle;
     cursor: pointer;
+    &.icon {
+      font-size: 16px;
+    }
   }
 }
 
@@ -263,4 +267,8 @@ body.dashboard {
 .is-selected .pika-button {
   background: @maincolor;
   box-shadow: inset 0 1px 3px darken(@maincolor, 10%);
+}
+
+.transparent {
+  opacity: 0 !important;
 }

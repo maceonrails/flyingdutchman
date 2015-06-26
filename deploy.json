@@ -14,5 +14,5 @@
     "sudo npm install",
     "bower install"
   ],
-  "run_cmd": "grunt build"
+  "run_cmd": "grunt build && sudo service frontend start"
 }

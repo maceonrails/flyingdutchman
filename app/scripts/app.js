@@ -9,7 +9,9 @@ var App = angular
     'ngTouch',
     'LocalStorageModule',
     'restangular',
-    'angularify.semantic'
+    'angularify.semantic',
+    'ngProgress',
+    'angularMoment'
   ]);
 
 App
@@ -22,7 +24,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('https://api.eresto.io/v1');
+      .setBaseUrl('http://localhost:3000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -55,15 +57,17 @@ App
     };
 
     service.response = function(response) {
-      var data = response.data.token;
+      var data = response.headers('X-Token');
       if (data){
         localStorageService.set('token', data);
       }
       return response;
     };
   })
-  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan) {
+  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+      ngProgress.start();
+
       // track the state the user wants to go to; authorization service needs this
       $rootScope.toState       = toState;
       $rootScope.toStateParams = toStateParams;
@@ -71,6 +75,10 @@ App
       // it'll be done when the state it resolved.
       if (Cancan.isIdentityResolved()) {
         Authenticate.authorize();
+
       }
     });
+
+    $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); });
+    $rootScope.$on('$stateChangeError', function(){ ngProgress.complete(); });
   });
