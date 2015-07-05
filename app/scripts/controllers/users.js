@@ -41,6 +41,8 @@ angular.module('erestoApp')
       $scope.selectedID = idx;
       $scope.formType = 'existing';
 
+      jQuery('label.error').remove();
+      jQuery('input.error, select.error, textarea.error').removeClass('error');
       _changeDateSelected();
     };
 
