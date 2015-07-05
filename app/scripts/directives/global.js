@@ -124,12 +124,12 @@ App
     return {
       restrict: 'C',
       link: function (scope, element) {
-        var wHeight = $window.innerHeight - 108;
-        jQuery(element).css('min-height',wHeight +'px');
+        var lHeight = $window.innerHeight - 108;
+        jQuery(element).css('min-height',lHeight +'px');
       }
     };
   })
-  .directive('pickaday', function ($window) {
+  .directive('pickaday', function () {
     return {
       restrict: 'C',
       link: function (scope, element) {
@@ -138,5 +138,30 @@ App
           format: 'ddd, D MMM YYYY'
         });
       }
+    };
+  })
+  .directive('ngSearch', function($rootScope){
+    return {
+      restrict: 'A',
+      link: function (scope, element) {
+        var btn = element.find('.search');
+        btn.bind('click', function () {
+          btn.addClass('loading');
+          jQuery('#search').focus();
+          if ($rootScope.search == null || $rootScope.search.field === 'All'){
+            $rootScope.search = null;
+          }
+          $rootScope.initial($rootScope.page);
+        });
+      }
+    };
+  })
+  .filter('range', function() {
+    return function(input, total) {
+      total = parseInt(total);
+      for (var i=0; i<total; i++){
+        input.push(i);
+      }
+      return input;
     };
   });

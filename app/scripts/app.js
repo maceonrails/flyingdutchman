@@ -2,7 +2,6 @@
 
 var App = angular
   .module('erestoApp', [
-    'ngAnimate',
     'ngCookies',
     'ui.router',
     'ngSanitize',
@@ -60,6 +59,12 @@ App
       var data = response.headers('X-Token');
       if (data){
         localStorageService.set('token', data);
+      }
+
+      // set total data
+      var total = response.data.total;
+      if (total){
+        $rootScope.total = total;
       }
       return response;
     };

@@ -1,13 +1,10 @@
 <nav class="navbar fixed">
   <ul class="left" ng-if="stateWithList.indexOf(state.current.name) >= 0">
-    <li><i class="icon-arrow-left"></i></li>
-    <li>Page 1</li>
-    <li><i class="icon-arrow-right"></i></li>
+    <li ng-click="prevPage()"><i class="icon-arrow-left"></i></li>
+    <li>Page {{page}} of {{countPage()}}</li>
+    <li ng-click="nextPage()"><i class="icon-arrow-right"></i></li>
     <li>
-      <div class="ui small icon input">
-        <input placeholder="Search..." type="text">
-        <i class="search link icon"></i>
-      </div>
+      <div ng-include="'views/partials/search/'+controller+'.html'" scope="" onload=""></div>
     </li>
     <li>
       <div class="ui red button" ng-click="addNew()">

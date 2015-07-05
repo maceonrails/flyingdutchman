@@ -15,6 +15,27 @@ angular.module('erestoApp')
       $rootScope.user          = currentUser;
       $rootScope.stateWithList = ['app.restricted.users'];
       $rootScope.state         = $state;
+      $rootScope.page          = 1;
+      $rootScope.controller    = 'default';
+      $rootScope.search        = null;
+
+      $rootScope.countPage = function(){
+        return Math.ceil($rootScope.total/10);
+      };
+
+      $rootScope.nextPage = function(){
+        if ($rootScope.countPage() > $rootScope.page){
+          $rootScope.page += 1;
+          $rootScope.initial($rootScope.page);
+        }
+      };
+
+      $rootScope.prevPage = function(){
+        if ($rootScope.page > 1){
+          $rootScope.page -= 1;
+          $rootScope.initial($rootScope.page);
+        }
+      };
 
       var token = localStorageService.get('token');
       if (token === null){
