@@ -124,7 +124,7 @@ App
     return {
       restrict: 'C',
       link: function (scope, element) {
-        var lHeight = $window.innerHeight - 108;
+        var lHeight = $window.innerHeight - 100;
         jQuery(element).css('min-height',lHeight +'px');
       }
     };
