@@ -1,7 +1,8 @@
-@import "bower_components/Semantic-UI-LESS/semantic.less";
+@import "bower_components/Semantic-UI-LESS-1/semantic.less";
 @import "fonts.less";
 
-@maincolor: #E25A5D;
+@sidebar: #50170e;
+@maincolor: #722D23;
 
 .hide {
   display: none;
@@ -191,7 +192,7 @@ body.dashboard {
 }
 
 .sidebar {
-  background: #353843 none repeat scroll 0 0;
+  background: @sidebar none repeat scroll 0 0;
   bottom: 0;
   position: fixed;
   top: 0;
@@ -219,7 +220,7 @@ body.dashboard {
 
 
       p, i {
-        color: #6B7482;
+        color: lighten(@sidebar, 60%);
       }
       p {
         font-size: 12px;

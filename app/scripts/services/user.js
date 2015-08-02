@@ -21,6 +21,19 @@ angular.module('erestoApp')
             .customGET('', {'filter[role]': 'eresto', page: page });
         }
       },
+
+      getData: function(page) {
+        if ($rootScope.search){
+          var query = {};
+          angular.extend(query, {  page: page }, $rootScope.search);
+          return Restangular.one('users', 'search')
+            .customGET('', query);
+        }else{
+          return Restangular.all('users')
+            .customGET('', { page: page });
+        }
+      },
+
       save: function(user) {
         jQuery('.content-workspace > .dimmer').addClass('active');
         return Restangular.all('users')

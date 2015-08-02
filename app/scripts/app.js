@@ -10,7 +10,8 @@ var App = angular
     'restangular',
     'angularify.semantic',
     'ngProgress',
-    'angularMoment'
+    'angularMoment',
+    'ngConfirm'
   ]);
 
 App
@@ -23,7 +24,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('https://api.eresto.io/v1');
+      .setBaseUrl('http://localhost:3000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })

@@ -13,14 +13,14 @@ angular.module('erestoApp')
       $rootScope.$state        = $state;
       $rootScope.token         = $stateParams.token; // set token from params
       $rootScope.user          = currentUser;
-      $rootScope.stateWithList = ['app.restricted.users'];
+      $rootScope.stateWithList = ['app.restricted.users', 'app.restricted.outlets', 'app.restricted.staff'];
       $rootScope.state         = $state;
       $rootScope.page          = 1;
       $rootScope.controller    = 'default';
       $rootScope.search        = null;
 
       $rootScope.countPage = function(){
-        return Math.ceil($rootScope.total/10);
+        return isNaN(Math.ceil($rootScope.total/10)) ? 1 : Math.ceil($rootScope.total/10);
       };
 
       $rootScope.nextPage = function(){

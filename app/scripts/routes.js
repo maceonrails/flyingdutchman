@@ -43,6 +43,24 @@ App
             controller: 'UsersCtrl'
           })
 
+          .state('app.restricted.outlets', {
+            url: 'outlets',
+            data: {
+              roles: ['superadmin']
+            },
+            templateUrl: 'views/outlets/index.html',
+            controller: 'OutletsCtrl'
+          })
+
+          .state('app.restricted.staff', {
+            url: 'staff',
+            data: {
+              roles: ['superadmin']
+            },
+            templateUrl: 'views/staffs/index.html',
+            controller: 'StaffCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',

@@ -379,7 +379,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           dot: true,
-          cwd: 'bower_components/Semantic-UI-LESS/themes/default/assets',
+          cwd: 'bower_components/Semantic-UI-LESS-1/themes/default/assets',
           dest: '<%= yeoman.dist %>/themes/default/assets',
           src: [
             'fonts/**/*'
@@ -396,7 +396,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: 'bower_components/Semantic-UI-LESS/themes/default/assets',
+          cwd: 'bower_components/Semantic-UI-LESS-1/themes/default/assets',
           dest: '.tmp/themes/default/assets',
           src: [
             'fonts/**/*'
