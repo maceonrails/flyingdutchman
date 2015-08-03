@@ -1,0 +1,70 @@
+<div class="ui two column padded grid" ng-init="initial()">
+    <div class="row">
+      <div class="column content-list">
+        <div class="ui animated divided list">
+          <div class="item" ng-repeat="product in products" ng-class="{active: selected.id === product.id}" ng-click="selectProduct($index)">
+            <i class="user icon"></i>
+            <div class="content">
+              <div class="header">{{product.name || 'No name'}}</div>
+              <div class="description"><b>{{product.role}}</b>, {{product.email}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column content-workspace">
+        <div class="ui inverted dimmer">
+          <div class="ui large loader"></div>
+        </div>
+        <h2 ng-if="selected.name == null">New Product</h2>
+        <h2 ng-if="selected.name == ''">Product / Name</h2>
+        <h2 ng-if="selected.name">Product / {{selected.profile_attributes.name}}</h2>
+        <div class="ui divider"></div>
+
+        <form class="ui form entry-form">
+        
+          <div class="required field">
+            <label>Category</label>
+             <autocomplete ng-model="selected.category" data="categories" on-type="updateCategories" class="autocomplete" attr-placeholder="Product category" attr-name="category" autocomplete-required="true"></autocomplete>
+          </div>
+          <div class="required field">
+            <label>Name</label>
+             <input name="name" placeholder="Product name" type="text" ng-model="selected.name" required>
+          </div>
+          <div class="required field">
+            <label>Default Price</label>
+             <input name="price" placeholder="Product name" type="text" ng-model="selected.default_price" required>
+          </div>
+          <div class="required field">
+            <label>Description</label>
+            <textarea name="address" placeholder="Product Description" ng-model="selected.description" required></textarea>
+          </div>
+
+          <h4 class="ui top attached header">Product Image <span class="red">*</span></h4>
+          <div class="ui bottom attached segment">
+            <div ngf-drop ngf-select ng-model="files" class="drop-box"
+            ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ng-class="{red: imageError}">
+              <p class="holder">Select file or Drop</p>
+              <div class="ui inverted dimmer" ng-class="{active: uploading}">
+                <div class="ui large loader"></div>
+              </div>
+            </div>
+          </div>
+          <p class="error" ng-class="{red: imageError}" ng-if="imageError">{{imageErrorMsg}}</p>
+          <div class="ui error message">
+            <div class="header">We noticed some issues</div>
+          </div>
+          <br />
+          <div class="ui white right labeled icon button" ng-click="saveData()">
+            <i class="save icon"></i>
+            <span ng-if="formType === 'existing'"> Update</span>
+            <span ng-if="formType === 'new'"> Save</span>
+          </div>
+
+          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="saveData()" ng-confirm="Are you sure?">
+            <i class="close icon"></i> Deactivate
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

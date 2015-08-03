@@ -13,7 +13,8 @@ angular.module('erestoApp')
       $rootScope.$state        = $state;
       $rootScope.token         = $stateParams.token; // set token from params
       $rootScope.user          = currentUser;
-      $rootScope.stateWithList = ['app.restricted.users', 'app.restricted.outlets', 'app.restricted.staff'];
+      $rootScope.stateWithList = ['app.restricted.users', 'app.restricted.outlets', 
+                                  'app.restricted.staff', 'app.restricted.products'];
       $rootScope.state         = $state;
       $rootScope.page          = 1;
       $rootScope.controller    = 'default';

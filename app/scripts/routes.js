@@ -61,6 +61,15 @@ App
             controller: 'StaffCtrl'
           })
 
+          .state('app.restricted.products', {
+            url: 'products',
+            data: {
+              roles: ['superadmin']
+            },
+            templateUrl: 'views/products/index.html',
+            controller: 'ProductsCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',

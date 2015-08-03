@@ -258,6 +258,7 @@ body.dashboard {
       i {
         font-size: 30px;
         padding-left: 10px;
+        padding-top: 17px;
       }
     }
   }
@@ -322,4 +323,55 @@ input#search {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   margin-left: -10px;
+}
+
+.ui.form textarea:not([rows]) {
+  height: auto;
+}
+
+div.autocomplete {
+  & > ul {
+    background: none repeat scroll 0 0 #fff;
+    border-color: rgba(34, 36, 38, 0.35);
+    box-shadow: 0 4px 5px #ddd;
+    margin: -2px 0 0;
+    padding-left: 0;
+
+    & > li {
+      padding-left: 10px;
+    }
+  }
+}
+
+#filter-select {
+  min-width: 140px;
+}
+
+.drop-box {
+  border: 5px dashed #ddd;
+  height: 200px;
+  padding: 2px;
+  position: relative;
+  text-align: center;
+
+  &.dragover {
+    border-color: #333;
+  }
+
+  &.active {
+    border: 1px solid #ddd;
+  }
+
+  p.holder {
+    padding-top: 85px;
+  }
+}
+
+.red {
+  color: red;
+  border-color: red;
+}
+
+p.error {
+  margin: 0 !important;
 }

@@ -11,7 +11,9 @@ var App = angular
     'angularify.semantic',
     'ngProgress',
     'angularMoment',
-    'ngConfirm'
+    'ngConfirm',
+    'autocomplete',
+    'ngFileUpload'
   ]);
 
 App
@@ -24,7 +26,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:3000/v1');
+      .setBaseUrl('http://localhost:4000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
