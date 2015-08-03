@@ -13,6 +13,10 @@ angular.module('erestoApp')
         }
       },
 
+      category: function() {
+        return Restangular.one('products', 'category').get();
+      },
+
       save: function(product) {
         jQuery('.content-workspace > .dimmer').addClass('active');
         return Restangular.all('products')

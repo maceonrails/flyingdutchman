@@ -3,10 +3,10 @@
       <div class="column content-list">
         <div class="ui animated divided list">
           <div class="item" ng-repeat="product in products" ng-class="{active: selected.id === product.id}" ng-click="selectProduct($index)">
-            <i class="user icon"></i>
+            <i class="food icon"></i>
             <div class="content">
               <div class="header">{{product.name || 'No name'}}</div>
-              <div class="description"><b>{{product.role}}</b>, {{product.email}}</div>
+              <div class="description">{{product.category}}</div>
             </div>
           </div>
         </div>
@@ -18,11 +18,11 @@
         </div>
         <h2 ng-if="selected.name == null">New Product</h2>
         <h2 ng-if="selected.name == ''">Product / Name</h2>
-        <h2 ng-if="selected.name">Product / {{selected.profile_attributes.name}}</h2>
+        <h2 ng-if="selected.name">Product / {{selected.name}}</h2>
         <div class="ui divider"></div>
 
         <form class="ui form entry-form">
-        
+
           <div class="required field">
             <label>Category</label>
              <autocomplete ng-model="selected.category" data="categories" on-type="updateCategories" class="autocomplete" attr-placeholder="Product category" attr-name="category" autocomplete-required="true"></autocomplete>
@@ -43,11 +43,10 @@
           <h4 class="ui top attached header">Product Image <span class="red">*</span></h4>
           <div class="ui bottom attached segment">
             <div ngf-drop ngf-select ng-model="files" class="drop-box"
-            ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ng-class="{red: imageError}">
-              <p class="holder">Select file or Drop</p>
-              <div class="ui inverted dimmer" ng-class="{active: uploading}">
-                <div class="ui large loader"></div>
-              </div>
+            ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ng-class="{red: imageError, active: selected.picture || selected.picture_base64 }">
+              <p class="holder" ng-if="!selected.picture && !selected.picture_base64">Select file or Drop</p>
+              <img ng-src="{{selected.picture_base64}}" ng-if="selected.picture_base64">
+              <img ng-src="{{selected.picture}}" ng-if="selected.picture && !selected.picture_base64">
             </div>
           </div>
           <p class="error" ng-class="{red: imageError}" ng-if="imageError">{{imageErrorMsg}}</p>
