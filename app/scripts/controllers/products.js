@@ -69,10 +69,11 @@ angular.module('erestoApp')
     };
 
     $scope.selectProduct = function(idx){
-      $scope.selected   = angular.copy($scope.products[idx]);
-      $scope.selectedID = idx;
-      $scope.formType   = 'existing';
-      $scope.selected.result= '';
+      $scope.selected        = angular.copy($scope.products[idx]);
+      $scope.selectedID      = idx;
+      $scope.formType        = 'existing';
+      $scope.selected.result = '';
+      $scope.imageError      = false;
 
       jQuery('label.error').remove();
       jQuery('input.error, select.error, textarea.error').removeClass('error');
