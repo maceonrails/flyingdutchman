@@ -45,8 +45,8 @@
             <div ng-disabled="selected.picture || selected.picture_base64" ngf-drop ngf-select ng-model="files" class="drop-box"
             ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ng-class="{red: imageError, active: selected.picture || selected.picture_base64 }">
               <p class="holder" ng-if="!selected.picture && !selected.picture_base64">Select file or Drop</p>
-              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" area-min-size="200" area-type="square" image="selected.picture_base64" ng-if="selected.picture_base64"></img-crop>
-              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" area-min-size="200" area-type="square" image="selected.picture" ng-if="selected.picture && !selected.picture_base64"></img-crop>
+              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" result-image-size="400" area-min-size="400" area-type="square" image="selected.picture_base64" ng-if="selected.picture_base64"></img-crop>
+              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" result-image-size="400" area-min-size="400" area-type="square" image="selected.picture" ng-if="selected.picture && !selected.picture_base64"></img-crop>
 
               <button ng-if="selected.picture || selected.picture_base64" class="ui icon button delete picture" ng-click="removePicture()"><i class="cancel icon"></i></button>
             </div>
