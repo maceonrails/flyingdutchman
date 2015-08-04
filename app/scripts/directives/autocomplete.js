@@ -1,5 +1,4 @@
-/* --- Made by justgoscha and licensed under MIT license --- */
-
+/* jshint ignore:start */
 var app = angular.module('autocomplete', []);
 
 app.directive('autocomplete', function() {
@@ -298,3 +297,4 @@ app.directive('suggestion', function(){
     }
   };
 });
+/* jshint ignore:end */

@@ -11,12 +11,15 @@ angular.module('erestoApp')
   .controller('ProductsCtrl', function ($scope, $rootScope, Product) {
     $scope.products       = {};
     $scope.selected       = {};
+    $scope.selected.result= '';
     $scope.formType       = 'new';
     $scope.selectedID     = null;
     $scope.categories     = null;
     $scope.imageError     = false;
     $scope.imageErrorMsg  = null;
     $rootScope.controller = 'products';
+
+    console.log($scope.selected);
 
     // ng init
     $rootScope.initial = function(xpage){
@@ -28,9 +31,10 @@ angular.module('erestoApp')
               $scope.products = res.products;
               jQuery('.search').removeClass('loading');
               if (res.products.length > 0) {
-                $scope.selected   = angular.copy(res.products[0]);
-                $scope.formType   = 'existing';
-                $scope.selectedID = 0;
+                $scope.selected        = angular.copy(res.products[0]);
+                $scope.selected.result = '';
+                $scope.formType        = 'existing';
+                $scope.selectedID      = 0;
               }else {
                 $scope.selected   = {};
                 $scope.formType   = 'new';
@@ -54,14 +58,21 @@ angular.module('erestoApp')
     };
 
     $rootScope.addNew = function(){
-      $scope.selected = {};
-      $scope.formType = 'new';
+      $scope.selected       = {};
+      $scope.selected.result= '';
+      $scope.formType       = 'new';
+    };
+
+    $scope.removePicture = function(){
+      $scope.selected.picture_base64 = null;
+      $scope.selected.picture        = null;
     };
 
     $scope.selectProduct = function(idx){
       $scope.selected   = angular.copy($scope.products[idx]);
       $scope.selectedID = idx;
       $scope.formType   = 'existing';
+      $scope.selected.result= '';
 
       jQuery('label.error').remove();
       jQuery('input.error, select.error, textarea.error').removeClass('error');
@@ -99,6 +110,10 @@ angular.module('erestoApp')
       }
     };
 
+    $scope.test = function(){
+      // console.log($dataURI);
+    }
+
     $scope.saveData = function(){
       if (!$scope.selected.picture){
         $scope.imageError    = true;
@@ -108,12 +123,16 @@ angular.module('erestoApp')
       var form = jQuery('.entry-form');
       form.validate();
       if (form.valid() && $scope.selected.picture){
-        $scope.imageError = false;
+        $scope.imageError              = false;
+        $scope.selected.picture_base64 = $scope.selected.result;
+
         if ($scope.formType === 'new'){
           Product.save($scope.selected)
             .then(function(res){
               $scope.products.push(res.product);
-              $scope.selected = angular.copy(res.product);
+              $scope.selected       = angular.copy(res.product);
+              $scope.selected.result= '';
+              $scope.formType       = 'existing';
               _getCategories();
               _removeDimmer();
             },
@@ -127,7 +146,8 @@ angular.module('erestoApp')
           Product.update($scope.selected)
             .then(function(res){
               $scope.products[$scope.selectedID] = res.product;
-              $scope.selected = angular.copy(res.product);
+              $scope.selected       = angular.copy(res.product);
+              $scope.selected.result= '';
               _getCategories();
               _removeDimmer();
             },
@@ -139,6 +159,31 @@ angular.module('erestoApp')
             });
         }
       }
+    };
+
+    $scope.deleteData = function(){
+      $scope.selected.active = false;
+
+      Product.update($scope.selected)
+        .then(function(res){
+          $scope.products.splice($scope.selectedID, 1);
+          if ( $scope.products.length > 0 ){
+            $scope.selectedID = 0;
+            $scope.selectProduct(0);
+          }else {
+            $scope.selected       = {};
+            $scope.formType       = 'new';
+            $scope.selected.result= '';
+          }
+          _getCategories();
+          _removeDimmer();
+        },
+        function(err){
+          if (err.status === 422){
+            Product.handle422(err.data);
+            _removeDimmer();
+          }
+        });
     };
 
     var _removeDimmer = function(){

@@ -13,7 +13,8 @@ var App = angular
     'angularMoment',
     'ngConfirm',
     'autocomplete',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ngImgCrop'
   ]);
 
 App

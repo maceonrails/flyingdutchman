@@ -42,11 +42,13 @@
 
           <h4 class="ui top attached header">Product Image <span class="red">*</span></h4>
           <div class="ui bottom attached segment">
-            <div ngf-drop ngf-select ng-model="files" class="drop-box"
+            <div ng-disabled="selected.picture || selected.picture_base64" ngf-drop ngf-select ng-model="files" class="drop-box"
             ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ng-class="{red: imageError, active: selected.picture || selected.picture_base64 }">
               <p class="holder" ng-if="!selected.picture && !selected.picture_base64">Select file or Drop</p>
-              <img ng-src="{{selected.picture_base64}}" ng-if="selected.picture_base64">
-              <img ng-src="{{selected.picture}}" ng-if="selected.picture && !selected.picture_base64">
+              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" area-min-size="200" area-type="square" image="selected.picture_base64" ng-if="selected.picture_base64"></img-crop>
+              <img-crop on-change="test()" result-image="selected.result" change-on-fly="true" area-min-size="200" area-type="square" image="selected.picture" ng-if="selected.picture && !selected.picture_base64"></img-crop>
+
+              <button ng-if="selected.picture || selected.picture_base64" class="ui icon button delete picture" ng-click="removePicture()"><i class="cancel icon"></i></button>
             </div>
           </div>
           <p class="error" ng-class="{red: imageError}" ng-if="imageError">{{imageErrorMsg}}</p>
@@ -60,8 +62,8 @@
             <span ng-if="formType === 'new'"> Save</span>
           </div>
 
-          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="saveData()" ng-confirm="Are you sure?">
-            <i class="close icon"></i> Deactivate
+          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="deleteData()" ng-confirm="Are you sure?">
+            <i class="close icon"></i> Delete
           </div>
         </form>
       </div>

@@ -148,7 +148,7 @@ App
         btn.bind('click', function () {
           btn.addClass('loading');
           jQuery('#search').focus();
-          if ($rootScope.search == null || $rootScope.search.field === undefined){
+          if ($rootScope.search === null || $rootScope.search.field === undefined){
             $rootScope.search = null;
           }
           $rootScope.initial($rootScope.page);

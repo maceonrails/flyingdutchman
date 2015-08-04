@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 'use strict';
 
 angular.module('angularify.semantic.dropdown', [])
@@ -160,3 +161,5 @@ angular.module('angularify.semantic.dropdown', [])
     }
   };
 });
+
+/* jshint ignore:end */
