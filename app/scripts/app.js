@@ -1,7 +1,7 @@
 'use strict';
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
 
 var App = angular
   .module('erestoApp', [
@@ -30,7 +30,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:4000/v1');
+      .setBaseUrl('http://localhost:5000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -63,11 +63,6 @@ App
     };
 
     service.response = function(response) {
-      var data = response.headers('X-Token');
-      if (data){
-        localStorageService.set('token', data);
-      }
-
       // set total data
       var total = response.data.total;
       if (total){

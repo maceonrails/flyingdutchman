@@ -8,7 +8,7 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams, $state) {
+  .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams) {
     $rootScope.token = $stateParams.token; // set token from params
-    $state.go('app.restricted.outlets');
+    // $state.go('app.restricted.outlets');
   });

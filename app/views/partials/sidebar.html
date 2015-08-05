@@ -1,13 +1,13 @@
 <nav class="sidebar">
     <ul>
-<!--         <li ui-sref-active="active" ui-sref="app.dashboard">
+        <li ui-sref-active="active" ui-sref="app.dashboard">
           <i class="icon-home"></i>
           <p>Dashboard</p>
-        </li> -->
+        </li>
 
-        <li ui-sref-active="active" ui-sref="app.restricted.outlets">
-          <i class="icon-outlet"></i>
-          <p>Outlets</p>
+        <li ng-click="sync()">
+          <i class="icon-refresh"></i>
+          <p>Sync Data</p>
         </li>
 
         <li ui-sref-active="active" ui-sref="app.restricted.staff">
@@ -18,6 +18,16 @@
         <li ui-sref-active="active" ui-sref="app.restricted.products">
           <i class="icon-list-board"></i>
           <p>Products</p>
+        </li>
+
+        <li ui-sref-active="active" ui-sref="app.restricted.products">
+          <i class="icon-achair"></i>
+          <p>Tables</p>
+        </li>
+
+        <li ui-sref-active="active" ui-sref="app.restricted.products">
+          <i class="icon-notebook"></i>
+          <p>Orders</p>
         </li>
 
         <li>

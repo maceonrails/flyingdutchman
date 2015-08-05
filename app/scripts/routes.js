@@ -34,19 +34,10 @@ App
           },
           template: '<div ui-view> </div>'
         })
-          .state('app.restricted.users', {
-            url: 'users',
-            data: {
-              roles: ['eresto']
-            },
-            templateUrl: 'views/users/index.html',
-            controller: 'UsersCtrl'
-          })
-
           .state('app.restricted.outlets', {
             url: 'outlets',
             data: {
-              roles: ['superadmin']
+              roles: ['manager']
             },
             templateUrl: 'views/outlets/index.html',
             controller: 'OutletsCtrl'
@@ -55,7 +46,7 @@ App
           .state('app.restricted.staff', {
             url: 'staff',
             data: {
-              roles: ['superadmin']
+              roles: ['manager']
             },
             templateUrl: 'views/staffs/index.html',
             controller: 'StaffCtrl'
@@ -64,7 +55,7 @@ App
           .state('app.restricted.products', {
             url: 'products',
             data: {
-              roles: ['superadmin']
+              roles: ['manager']
             },
             templateUrl: 'views/products/index.html',
             controller: 'ProductsCtrl'

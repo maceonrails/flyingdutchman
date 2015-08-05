@@ -19,8 +19,6 @@ angular.module('erestoApp')
     $scope.imageErrorMsg  = null;
     $rootScope.controller = 'products';
 
-    console.log($scope.selected);
-
     // ng init
     $rootScope.initial = function(xpage){
       var page = xpage || 1;
@@ -111,10 +109,6 @@ angular.module('erestoApp')
       }
     };
 
-    $scope.test = function(){
-      // console.log($dataURI);
-    }
-
     $scope.saveData = function(){
       if (!$scope.selected.picture){
         $scope.imageError    = true;
@@ -166,7 +160,7 @@ angular.module('erestoApp')
       $scope.selected.active = false;
 
       Product.update($scope.selected)
-        .then(function(res){
+        .then(function(){
           $scope.products.splice($scope.selectedID, 1);
           if ( $scope.products.length > 0 ){
             $scope.selectedID = 0;

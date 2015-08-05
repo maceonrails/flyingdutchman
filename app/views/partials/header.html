@@ -7,7 +7,7 @@
       <div ng-include="'views/partials/search/'+controller+'.html'" scope="" onload=""></div>
     </li>
     <li>
-      <div class="ui red button" ng-click="addNew()">
+      <div class="ui red button" ng-click="addNew()" ng-if="canAdd">
         <i class="add icon"></i>
         <span>Add New</span>
       </div>
