@@ -13,8 +13,10 @@ angular.module('erestoApp')
       $rootScope.$state        = $state;
       $rootScope.token         = $stateParams.token; // set token from params
       $rootScope.user          = currentUser;
-      $rootScope.stateWithList = ['app.restricted.users', 'app.restricted.outlets', 
-                                  'app.restricted.staff', 'app.restricted.products'];
+      $rootScope.stateWithList = ['app.restricted.staff', 'app.restricted.products',
+                                  'app.restricted.tables'];
+      $rootScope.doesntHavePage= ['app.restricted.tables'];
+
       $rootScope.state         = $state;
       $rootScope.page          = 1;
       $rootScope.controller    = 'default';
@@ -77,7 +79,7 @@ angular.module('erestoApp')
                 $rootScope.syncError  = false;
 
                 $state.go('app.dashboard');
-              
+
               }, function(){
                 $rootScope.syncError  = true;
                 $rootScope.syncActive = false;

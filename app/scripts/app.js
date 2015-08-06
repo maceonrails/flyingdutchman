@@ -17,7 +17,8 @@ var App = angular
     'ngConfirm',
     'autocomplete',
     'ngFileUpload',
-    'ngImgCrop'
+    'ngImgCrop',
+    'ngLodash'
   ]);
 
 App

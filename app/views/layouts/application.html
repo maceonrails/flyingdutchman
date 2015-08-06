@@ -15,9 +15,9 @@
     <div class="content">
         <div class="ui form">
             <div class="field fluid">
-                <label ng-class="{red: syncError}">Outlet ID</label>
-                <input type="text" ng-class="{red: syncError}" ng-model="$root.outlet_id"/>
-                <small ng-if="syncError" id="syncError" ng-class="{red: syncError}">Cannot find outlet with id: {{outlet_id}}</small>
+                <label ng-class="{error: syncError}">Outlet ID</label>
+                <input type="text" ng-class="{error: syncError}" ng-model="$root.outlet_id"/>
+                <small ng-if="syncError" id="syncError" ng-class="{error: syncError}">Cannot find outlet with id: {{outlet_id}}</small>
             </div>
         </div>
     </div>

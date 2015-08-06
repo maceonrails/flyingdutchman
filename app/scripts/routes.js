@@ -61,6 +61,15 @@ App
             controller: 'ProductsCtrl'
           })
 
+          .state('app.restricted.tables', {
+            url: 'tables',
+            data: {
+              roles: ['manager']
+            },
+            templateUrl: 'views/tables/index.html',
+            controller: 'TablesCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',
