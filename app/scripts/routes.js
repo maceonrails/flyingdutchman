@@ -70,6 +70,15 @@ App
             controller: 'TablesCtrl'
           })
 
+          .state('app.restricted.discounts', {
+            url: 'discounts',
+            data: {
+              roles: ['manager']
+            },
+            templateUrl: 'views/discounts/index.html',
+            controller: 'DiscountsCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',

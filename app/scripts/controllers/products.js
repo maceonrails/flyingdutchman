@@ -18,6 +18,7 @@ angular.module('erestoApp')
     $scope.imageError     = false;
     $scope.imageErrorMsg  = null;
     $rootScope.controller = 'products';
+    $rootScope.canAdd     = false;
 
     // ng init
     $rootScope.initial = function(xpage){

@@ -64,7 +64,7 @@
                   <i class="envelope icon"></i>
                 </div>
               </div>
-              <div class="required field">
+              <div class="required transparent field">
                 <label class="">Role</label>
                 <dropdown title="Role" ng-model="selected.role" open="false" class="" required name="role">
                     <dropdown-group title="c.value" value="c.value" ng-repeat="c in roles">{{c.title}}</dropdown-group>
@@ -87,12 +87,12 @@
                 </div>
               </div>
             </div>
-            <div class="field">
+            <!-- <div class="field">
               <label>Assign to outlet</label>
               <dropdown title="Outlet" ng-model="selected.outlet_id" open="false" class="" required name="outlet">
                   <dropdown-group title="c.name" value="c.id" ng-repeat="c in outlets">{{c.name}}</dropdown-group>
               </dropdown>
-            </div>
+            </div> -->
           </div>
           <div class="ui error message">
             <div class="header">We noticed some issues</div>
@@ -104,9 +104,9 @@
             <span ng-if="formType === 'new'"> Save</span>
           </div>
 
-          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="saveData()" ng-confirm="Are you sure?">
+          <!-- <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="saveData()" ng-confirm="Are you sure?">
             <i class="close icon"></i> Deactivate
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

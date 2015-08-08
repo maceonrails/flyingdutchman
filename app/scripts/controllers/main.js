@@ -14,7 +14,7 @@ angular.module('erestoApp')
       $rootScope.token         = $stateParams.token; // set token from params
       $rootScope.user          = currentUser;
       $rootScope.stateWithList = ['app.restricted.staff', 'app.restricted.products',
-                                  'app.restricted.tables'];
+                                  'app.restricted.tables', 'app.restricted.discounts'];
       $rootScope.doesntHavePage= ['app.restricted.tables'];
 
       $rootScope.state         = $state;
@@ -63,16 +63,19 @@ angular.module('erestoApp')
 
       $rootScope.doSync = function(){
         $rootScope.syncActive = 'downloading';
-        var products = Cloud.one('products', 'all').get();
-        var staffs   = Cloud.one('users', 'all')
-                        .customGET('', {'filter[outlet_id]': $rootScope.outlet_id});
+        var products  = Cloud.one('products', 'all').get();
+        var outlet    = Cloud.one('outlets', $rootScope.outlet_id).get();
+        var staffs    = Cloud.one('users', 'all')
+                          .customGET('', {'filter[outlet_id]': $rootScope.outlet_id});
+        var discounts = Cloud.one('discounts', 'all')
+                          .customGET('', {outlet_id: $rootScope.outlet_id});
 
-        $q.all([products, staffs])
+        $q.all([products, staffs, outlet, discounts])
           .then(function(results){
             $rootScope.syncActive = 'saving';
 
             Restangular.all('sync')
-              .customPOST(angular.extend(results[0], results[1]), null, {}, {})
+              .customPOST(angular.extend(results[0], results[1], results[2], results[3]), null, {}, {})
               .then(function(){
                 jQuery('.ui.modal').modal('hide');
                 $rootScope.syncActive = false;

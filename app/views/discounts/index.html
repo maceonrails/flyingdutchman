@@ -1,0 +1,24 @@
+<div class="ui two column padded grid" ng-init="initial()">
+    <div class="row">
+      <div class="column content-list">
+        <div class="ui animated divided list">
+          <div class="item" ng-repeat="discount in discounts">
+            <i class="ticket icon"></i>
+            <div class="content">
+              <div class="header">{{discount.name || 'No name'}}</div>
+              <div class="description"><b>{{discount.product}}</b>, Rp. {{discount.amount}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column content-workspace">
+        <div class="ui inverted dimmer">
+          <div class="ui large loader"></div>
+        </div>
+        <button class="ui button right labeled icon blue" ng-class="{loading: discountLoading}" ng-click="discountLoading = true; resync();">
+          <i class="icon refresh "></i>
+          Resync Data</button>
+      </div>
+    </div>
+</div>

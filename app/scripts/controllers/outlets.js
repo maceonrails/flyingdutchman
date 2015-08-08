@@ -14,6 +14,7 @@ angular.module('erestoApp')
     $scope.formType       = 'new';
     $scope.selectedID     = null;
     $rootScope.controller = 'outlets';
+    $rootScope.canAdd     = false;
 
     // ng init
     $rootScope.initial = function(xpage){

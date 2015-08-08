@@ -19,6 +19,7 @@ angular.module('erestoApp')
 
     // ng init
     $rootScope.initial = function(xpage){
+      console.log(xpage);
       Table.getData()
         .then(
           function(res){
@@ -35,7 +36,7 @@ angular.module('erestoApp')
                   end: parseInt(lodash.last(arrTable).name)
                 };
                 $scope.tables.push(tableHolder);
-              })
+              });
 
               jQuery('.search').removeClass('loading');
               if ($scope.tables.length > 0) {
@@ -67,7 +68,7 @@ angular.module('erestoApp')
 
     $scope.saveData = function(){
       var form        = jQuery('.entry-form');
-      var validate    = form.validate();
+      form.validate();
       $scope.hasError = $scope.selected.start > $scope.selected.end;
 
       if (form.valid() && !$scope.hasError){

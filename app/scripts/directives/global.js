@@ -157,7 +157,7 @@ App
     };
   })
 
-  .directive('sidebar', function($rootScope){
+  .directive('sidebar', function(){
     return {
       restrict: 'C',
       link: function (scope, element) {
