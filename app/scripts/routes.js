@@ -70,6 +70,15 @@ App
             controller: 'ProductsCtrl'
           })
 
+          .state('app.restricted.discounts', {
+            url: 'discounts',
+            data: {
+              roles: ['superadmin']
+            },
+            templateUrl: 'views/discounts/index.html',
+            controller: 'DiscountsCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',

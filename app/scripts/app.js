@@ -1,7 +1,7 @@
 'use strict';
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
 
 var App = angular
   .module('erestoApp', [
@@ -17,7 +17,8 @@ var App = angular
     'ngConfirm',
     'autocomplete',
     'ngFileUpload',
-    'ngImgCrop'
+    'ngImgCrop',
+    'localytics.directives'
   ]);
 
 App

@@ -26,6 +26,7 @@ angular.module('erestoApp')
               jQuery('.search').removeClass('loading');
               if (res.outlets.length > 0) {
                 $scope.selected   = angular.copy(res.outlets[0]);
+                $scope.selected.taxs = _objToArr(res.outlets[0].taxs);
                 $scope.formType   = 'existing';
                 $scope.selectedID = 0;
               }else {
@@ -36,6 +37,22 @@ angular.module('erestoApp')
           });
     };
 
+    var _objToArr  = function(obj){
+      if(obj === null || obj === undefined){ obj = {}; }
+      return Object.keys(obj).map(function (key) {return {label: key, value: obj[key]}; });
+    };
+
+    var _arrToObj  = function(arr){
+      if(arr === null || arr === undefined){ arr = []; }
+      var to_return =  {};
+      for (var i = arr.length - 1; i >= 0; i--) {
+        if (arr[i].value !== '0'){
+          to_return[arr[i].label] = arr[i].value;
+        }
+      }
+      return to_return;
+    };
+
     $rootScope.addNew = function(){
       $scope.selected = {};
       $scope.formType = 'new';
@@ -43,6 +60,7 @@ angular.module('erestoApp')
 
     $scope.selectOutlet = function(idx){
       $scope.selected   = angular.copy($scope.outlets[idx]);
+      $scope.selected.taxs = _objToArr($scope.outlets[idx].taxs);
       $scope.selectedID = idx;
       $scope.formType   = 'existing';
 
@@ -50,15 +68,24 @@ angular.module('erestoApp')
       jQuery('input.error, select.error, textarea.error').removeClass('error');
     };
 
+    $scope.addTax = function(){
+      if ($scope.selected.taxs === null){
+        $scope.selected.taxs = [];
+      }
+      $scope.selected.taxs.push({label: 'New tax', value: 0});
+    };
+
     $scope.saveData = function(){
       var form = jQuery('.entry-form');
       form.validate();
       if (form.valid()){
+        $scope.selected.taxs = _arrToObj($scope.selected.taxs);
         if ($scope.formType === 'new'){
           Outlet.save($scope.selected)
             .then(function(res){
               $scope.outlets.push(res.outlet);
-              $scope.selected = angular.copy(res.outlet);
+              $scope.selected      = angular.copy(res.outlet);
+              $scope.selected.taxs = _objToArr(res.outlet.taxs);
               _removeDimmer();
             },
             function(err){
@@ -71,7 +98,8 @@ angular.module('erestoApp')
           Outlet.update($scope.selected)
             .then(function(res){
               $scope.outlets[$scope.selectedID] = res.outlet;
-              $scope.selected = angular.copy(res.outlet);
+              $scope.selected      = angular.copy(res.outlet);
+              $scope.selected.taxs = _objToArr(res.outlet.taxs);
               _removeDimmer();
             },
             function(err){

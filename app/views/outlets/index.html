@@ -48,6 +48,24 @@
             <textarea name="address" placeholder="Address" ng-model="selected.address"></textarea>
           </div>
 
+          <h4 class="ui top attached header blue">Tax Components</h4>
+          <div class="ui bottom attached segment">
+            <div class="two fields" ng-repeat="tax in selected.taxs">
+              <div class="field">
+                <label>Tax name</label>
+                <input name="tax_name" type="text" placeholder="Name" ng-model="tax.label">
+              </div>
+              <div class="field">
+                <label>Tax amount</label>
+                <div class="ui corner labeled input">
+                  <input name="confirmation" type="text" placeholder="Amount" ng-model="tax.value">
+                  <div class="ui corner label"><i class="icon">%</i></div>
+                </div>
+              </div>
+            </div>
+            <a href="" ng-click="addTax()">Add New</a>
+          </div>
+
           <div class="ui error message">
             <div class="header">We noticed some issues</div>
           </div>

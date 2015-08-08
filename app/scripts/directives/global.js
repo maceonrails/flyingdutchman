@@ -156,6 +156,18 @@ App
       }
     };
   })
+  .directive('sidebar', function(){
+      return {
+        restrict: 'C',
+        link: function (scope, element) {
+          jQuery(element).enscroll({
+            showOnHover: true,
+            verticalTrackClass: 'track3',
+            verticalHandleClass: 'handle3'
+          });
+        }
+      };
+  })
   .filter('range', function() {
     return function(input, total) {
       total = parseInt(total);
