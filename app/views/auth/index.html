@@ -1,6 +1,21 @@
 <div id="welcome">
-  <h1>eresto.io</h1>
-  <p>One stop restaurant solution.</p>
+  <h1>Bober Cafe</h1>
+  <small class="error">{{signInError}}</small>
+  <form class="ui form" ng-submit="doLogin()">
+    <div class="field fluid">
+      <input type="text" ng-model="user.email" placeholder="Email">
+    </div>
+
+    <div class="field fluid">
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </div>
+
+    <div class="field fluid">
+      <button type="submit" class="ui button main fluid" ng-class="{loading: signIn}">Sign In</button>
+    </div>
+
+  </form>
+  <!-- <p>One stop restaurant solution.</p>
   <button continue>Continue</button>
 
   <div class="field hide">
@@ -18,5 +33,5 @@
       <i class="icon-arrow-right submit" btn-step="two"> </i>
     </div>
   </div>
-  <button class="three hide" login-btn>Signin in</button>
+  <button class="three hide" login-btn>Signin in</button> -->
 </div>

@@ -69,7 +69,7 @@ angular.module('erestoApp')
     };
 
     $scope.addTax = function(){
-      if ($scope.selected.taxs === null){
+      if (!$scope.selected.taxs){
         $scope.selected.taxs = [];
       }
       $scope.selected.taxs.push({label: 'New tax', value: 0});
