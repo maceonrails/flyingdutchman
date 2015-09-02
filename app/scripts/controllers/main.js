@@ -67,10 +67,9 @@ angular.module('erestoApp')
         var outlet    = Cloud.one('outlets', $rootScope.outlet_id).get();
         var staffs    = Cloud.one('users', 'all')
                           .customGET('', {'filter[outlet_id]': $rootScope.outlet_id});
-        var discounts = Cloud.one('discounts', 'all')
-                          .customGET('', {outlet_id: $rootScope.outlet_id});
+        var category  = Cloud.one('product_categories', 'all').get();
 
-        $q.all([products, staffs, outlet, discounts])
+        $q.all([products, staffs, outlet, category])
           .then(function(results){
             $rootScope.syncActive = 'saving';
 
