@@ -36,14 +36,25 @@
           <div class="two fields">
             <div class="field required">
               <label>Product</label>
-              <dropdown title="Product" ng-model="selected.product_id" open="false" class="" required name="product">
-                  <dropdown-group title="" value="">Select Product</dropdown-group>
-                  <dropdown-group title="c.name" value="c.id" ng-repeat="c in products">{{c.name}}</dropdown-group>
-              </dropdown>
+              <select ng-model="selected.product_id">
+                <option ng-repeat="c in products" value="{{c.id}}" ng-selected="selected.product_id == c.id">
+                  {{c.name}}
+                </option>
+              </select>
             </div>
             <div class="field required">
               <label>Amount</label>
               <input name="amount" placeholder="Amount" type="text" ng-model="selected.amount" required>
+            </div>
+          </div>
+
+          <div class="two fields" ng-if="selected.product_id">
+            <div class="field">
+              <label>Percentage to amount calculator</label>
+              <input name="amount" placeholder="Percentage" type="number" ng-model="selected.percentage" required>
+            </div>
+            <div class="field required transparent">
+              <label>Amount</label>
             </div>
           </div>
           <div class="field">

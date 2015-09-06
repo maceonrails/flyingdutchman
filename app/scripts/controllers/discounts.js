@@ -8,7 +8,7 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('DiscountsCtrl', function ($scope, $rootScope, Discount, Restangular) {
+  .controller('DiscountsCtrl', function ($scope, $rootScope, Discount, Restangular, lodash) {
     $scope.discounts      = {};
     $scope.selected       = {};
     $scope.products       = [];
@@ -114,6 +114,17 @@ angular.module('erestoApp')
           }
         });
     };
+
+    $scope.$watch('selected', function(newVal, oldVal){
+      if (newVal.percentage !== oldVal.percentage){
+        var _isNaN  = isNaN(parseInt(newVal.percentage));
+        var percent = _isNaN ? 0 : parseInt(newVal.percentage);
+        percent     = percent / 100;
+        var prd     = lodash.find($scope.products, function(r){return r.id === $scope.selected.product_id});
+        var disct   = percent * prd.price;
+        $scope.selected.amount = disct;
+      }
+    }, true);
 
     var _removeDimmer = function(){
       jQuery('.content-workspace > .dimmer').removeClass('active');
