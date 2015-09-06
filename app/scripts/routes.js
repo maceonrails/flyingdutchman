@@ -55,7 +55,7 @@ App
           .state('app.restricted.products', {
             url: 'products',
             data: {
-              roles: ['manager']
+              roles: ['manager', 'captain']
             },
             templateUrl: 'views/products/index.html',
             controller: 'ProductsCtrl'
@@ -77,6 +77,15 @@ App
             },
             templateUrl: 'views/discounts/index.html',
             controller: 'DiscountsCtrl'
+          })
+
+          .state('app.restricted.settings', {
+            url: 'settings',
+            data: {
+              roles: ['manager', 'captain']
+            },
+            templateUrl: 'views/settings/index.html',
+            controller: 'SettingsCtrl'
           })
 
 

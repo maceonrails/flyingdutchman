@@ -15,7 +15,7 @@ angular.module('erestoApp')
       $rootScope.user          = currentUser;
       $rootScope.stateWithList = ['app.restricted.staff', 'app.restricted.products',
                                   'app.restricted.tables', 'app.restricted.discounts'];
-      $rootScope.doesntHavePage= ['app.restricted.tables'];
+      $rootScope.doesntHavePage= ['app.restricted.tables', 'app.restricted.settings'];
 
       $rootScope.state         = $state;
       $rootScope.page          = 1;
