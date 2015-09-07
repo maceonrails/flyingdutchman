@@ -18,7 +18,8 @@ var App = angular
     'autocomplete',
     'ngFileUpload',
     'ngImgCrop',
-    'localytics.directives'
+    'localytics.directives',
+    'ngLodash'
   ]);
 
 App
