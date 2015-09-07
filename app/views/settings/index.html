@@ -2,22 +2,25 @@
   <div class="row padding">
     <div class="column">
       <div class="ui piled segment">
+        <div class="ui inverted dimmer user">
+          <div class="ui large loader"></div>
+        </div>
         <h4 class="ui header">User details</h4>
         <form class="ui form entry-form">
           <div class="two fields">
             <div class="field required">
               <label>Name</label>
-              <input name="name" placeholder="Full name" type="text" ng-model="user.profile_attributes.name" required>
+              <input name="name" placeholder="Full name" type="text" ng-model="this_user.profile_attributes.name" required>
               <div class="message"></div>
             </div>
             <div class="field required">
               <label>Phone</label>
-              <input name="phone" placeholder="Phone number" type="number" ng-model="user.profile_attributes.phone" required number>
+              <input name="phone" placeholder="Phone number" type="number" ng-model="this_user.profile_attributes.phone" required number>
             </div>
           </div>
           <div class="field">
             <label>Address</label>
-            <textarea name="address" placeholder="Address" ng-model="user.profile_attributes.address"></textarea>
+            <textarea name="address" placeholder="Address" ng-model="this_user.profile_attributes.address"></textarea>
           </div>
 
           <h4 class="ui top attached header">Account Info</h4>
@@ -26,7 +29,7 @@
               <div class="required field">
                 <label>Email</label>
                 <div class="ui icon input">
-                  <input id="email" name="email" placeholder="Email" type="text" ng-model="user.email" required disabled>
+                  <input id="email" name="email" placeholder="Email" type="text" ng-model="this_user.email" required disabled>
                   <i class="envelope icon"></i>
                 </div>
               </div>
@@ -49,7 +52,7 @@
               <div class="field">
                 <label>Password</label>
                 <div class="ui icon input">
-                  <input name="password" id="password" type="password" placeholder="Password" ng-model="user.password" minlength="8">
+                  <input name="password" id="password" type="password" placeholder="Password" ng-model="this_user.password" minlength="8">
                   <i class="lock icon"></i>
                 </div>
               </div>
@@ -65,7 +68,7 @@
           <div class="ui error message">
             <div class="header">We noticed some issues</div>
           </div>
-          <div class="ui white right labeled icon button" ng-click="saveData()">
+          <div class="ui white right labeled icon button" ng-click="updateUser()">
             <i class="save icon"></i>
             <span > Update</span>
           </div>
@@ -73,40 +76,43 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column" ng-if="$root.user.role == 'manager'">
       <div class="ui piled segment">
+        <div class="ui inverted dimmer outlet">
+          <div class="ui large loader"></div>
+        </div>
         <h4 class="ui header">Outlet details</h4>
         <form class="ui form entry-form">
           <div class="two fields">
             <div class="field required">
               <label>Name</label>
-              <input name="name" placeholder="Outlet name" type="text" ng-model="selected.name" required>
+              <input name="name" placeholder="Outlet name" type="text" ng-model="outlet.name" required>
               <div class="message"></div>
             </div>
             <div class="field required">
               <label>Email</label>
-              <input name="email" placeholder="Phone number" type="email" ng-model="selected.email" required number>
+              <input name="email" placeholder="Phone number" type="email" ng-model="outlet.email" required number>
             </div>
           </div>
           <div class="two fields">
             <div class="field required">
               <label>Phone</label>
-              <input name="phone" placeholder="Phone number" type="number" ng-model="selected.phone" required number>
+              <input name="phone" placeholder="Phone number" type="number" ng-model="outlet.phone" required number>
             </div>
             <div class="field">
               <label>Mobile Phone</label>
-              <input name="mobile" placeholder="Mobile phone number" type="number" ng-model="selected.mobile" number>
+              <input name="mobile" placeholder="Mobile phone number" type="number" ng-model="outlet.mobile" number>
             </div>
           </div>
           <div class="field">
             <label>Address</label>
-            <textarea name="address" placeholder="Address" ng-model="selected.address"></textarea>
+            <textarea name="address" placeholder="Address" ng-model="outlet.address"></textarea>
           </div>
 
           <div class="ui error message">
             <div class="header">We noticed some issues</div>
           </div>
-          <div class="ui white right labeled icon button" ng-click="saveData()">
+          <div class="ui white right labeled icon button" ng-click="updateOutlet()">
             <i class="save icon"></i>
             <span> Update</span>
           </div>
@@ -114,49 +120,45 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column" ng-if="$root.user.role == 'manager'">
       <div class="ui piled segment">
+        <div class="ui inverted dimmer printer">
+          <div class="ui large loader"></div>
+        </div>
         <h4 class="ui header"> <i class="icon-printer"></i> Printers</h4>
-        <table class="ui compact celled  table">
+        <table class="ui compact celled table form">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Registration Date</th>
-              <th>E-mail address</th>
-              <th>Premium Plan</th>
+              <th>Device</th>
+              <th>Default</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>John Lilki</td>
-              <td>September 14, 2013</td>
-              <td>jhlilk22@yahoo.com</td>
-              <td>No</td>
+            <tr ng-repeat="printer in printers">
+              <td>{{printer.name}}</td>
+              <td>{{printer.printer}}</td>
+              <td>{{printer.default ? 'Yes' : 'No'}}</td>
+              <td>
+                <div class="ui button small red" ng-click="deletePrinter(printer)" ng-confirm="Are you sure?">Delete</div>
+              </td>
             </tr>
-            <tr>
-              <td>Jamie Harington</td>
-              <td>January 11, 2014</td>
-              <td>jamieharingonton@yahoo.com</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td>Jill Lewis</td>
-              <td>May 11, 2014</td>
-              <td>jilsewris22@yahoo.com</td>
-              <td>Yes</td>
+            <tr ng-show="addPrinter" id="addPrinter">
+              <td class="field"><input type="text" id="newprinter-name" placeholder="Printer name"> </td>
+              <td class="field"><input type="text" id="newprinter-printer" placeholder="Printer device"></td>
+              <td class="field"><input type="checkbox" id="newprinter-default" ng-checked="newprinter.default"></td>
+              <td>
+                <div class="ui button small blue" ng-click="savePrinter()">Save</div>
+                <div class="ui button small" ng-click="cancelAddPrinter()">Cancel</div>
+              </td>
             </tr>
           </tbody>
           <tfoot class="full-width">
             <tr>
               <th colspan="4">
-                <div class="ui right floated small primary labeled icon button">
-                  <i class="user icon"></i> Add User
-                </div>
-                <div class="ui small button">
-                  Approve
-                </div>
-                <div class="ui small  disabled button">
-                  Approve All
+                <div class="ui right floated small primary labeled icon button" ng-click="addPrinter = true; newprinter = {}; showAddPrinter();">
+                  <i class="icon add"></i> Add Printer
                 </div>
               </th>
             </tr>

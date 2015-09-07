@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('erestoApp')
-  .factory('Printer', function (Restangular) {
+  .factory('Order', function (Restangular) {
     return {
       getData: function() {
         return Restangular.one('printers', 'all').get();

@@ -44,6 +44,6 @@ angular.module('erestoApp')
 
   .factory('Cloud', function(Restangular) {
     return Restangular.withConfig(function(RestangularConfigurer) {
-      RestangularConfigurer.setBaseUrl('http://localhost:4000/v1');
+      RestangularConfigurer.setBaseUrl('http://api-bober.eresto.io/v1');
     });
   });
