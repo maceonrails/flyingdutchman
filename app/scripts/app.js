@@ -18,7 +18,8 @@ var App = angular
     'autocomplete',
     'ngFileUpload',
     'ngImgCrop',
-    'localytics.directives'
+    'localytics.directives',
+    'ngLodash'
   ]);
 
 App
@@ -31,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:4000/v1');
+      .setBaseUrl('http://api-bober.eresto.io/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
