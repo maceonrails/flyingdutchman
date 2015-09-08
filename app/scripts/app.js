@@ -18,7 +18,8 @@ var App = angular
     'autocomplete',
     'ngFileUpload',
     'ngImgCrop',
-    'ngLodash'
+    'ngLodash',
+    'nvd3ChartDirectives'
   ]);
 
 App

@@ -3,22 +3,14 @@
 angular.module('erestoApp')
   .factory('Order', function (Restangular) {
     return {
-      getData: function() {
-        return Restangular.one('printers', 'all').get();
+      getData: function(query) {
+        return Restangular.one('orders', 'search').customGET('', query);
       },
-      save: function(printer) {
-        jQuery('.dimmer.printer').addClass('active');
-        return Restangular.all('printers')
-          .customPOST({'printer': printer}, null, {}, {});
+      getGraphRevenue: function(query) {
+        return Restangular.one('orders', 'graph_by_revenue').customGET('', query);
       },
-      update: function(printer) {
-        jQuery('.dimmer.printer').addClass('active');
-        return Restangular.one('printers', printer.id)
-          .customPUT({'printer': printer}, null, {}, {});
-      },
-      delete: function(printer) {
-        jQuery('.dimmer.printer').addClass('active');
-        return Restangular.one('printers', printer.id).remove();
+      getGraphOrder: function(query) {
+        return Restangular.one('orders', 'graph_by_order').customGET('', query);
       }
     };
   });

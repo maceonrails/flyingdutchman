@@ -1,0 +1,69 @@
+<div class="ui one column padding grid" ng-init="initial()">
+  <div class="row">
+    <div class="column" ng-if="$root.user.role == 'manager'">
+      <div class="ui piled segment">
+        <div class="ui two column grid">
+          <div class="row">
+
+            <div class="column" style="padding-bottom: 30px;">
+              <h3>Revenue</h3>
+              <div class="my floated right">
+                <dropdown title="This Week" ng-model="$root.graphRevenue" open="false" class="" required name="role">
+                    <dropdown-group title="this_week" value="this_week">This Week</dropdown-group>
+                    <dropdown-group title="this_month" value="this_month">This Month</dropdown-group>
+                    <dropdown-group title="last_three_months" value="last_three_months">Last Three Months</dropdown-group>
+                    <dropdown-group title="last_six_months" value="last_six_months">Last Six Months</dropdown-group>
+                    <dropdown-group title="this_year" value="this_year">This Year</dropdown-group>
+                    <dropdown-group title="last_three_year" value="last_three_year">Last Three Years</dropdown-group>
+                </dropdown>
+              </div>
+              <div class="ui divider"></div>
+              <div style="height: 400px; padding: 10px">
+                <nvd3-line-chart
+                    yAxisTickPadding="yPadding"
+                    data="exampleData"
+                    showXAxis="true"
+                    showYAxis="true"
+                    tooltips="true"
+                    xAxisTickFormat="xFormat"
+                    yAxisLabel="Revenue"
+                    yAxisTickFormat="yFormat"
+                    interactive="true">
+                </nvd3-line-chart>
+                <h2 style="margin-top: -15px">Total Revenue: {{totalRevenue}}</h2>
+              </div>
+            </div>
+
+            <div class="column" style="padding-bottom: 30px;">
+              <h3>Orders</h3>
+              <div class="my floated right">
+                <dropdown title="This Week" ng-model="$root.graphOrder" open="false" class="" required name="role">
+                    <dropdown-group title="this_week" value="this_week">This Week</dropdown-group>
+                    <dropdown-group title="this_month" value="this_month">This Month</dropdown-group>
+                    <dropdown-group title="last_three_months" value="last_three_months">Last Three Months</dropdown-group>
+                    <dropdown-group title="last_six_months" value="last_six_months">Last Six Months</dropdown-group>
+                    <dropdown-group title="this_year" value="this_year">This Year</dropdown-group>
+                    <dropdown-group title="last_three_year" value="last_three_year">Last Three Years</dropdown-group>
+                </dropdown>
+              </div>
+              <div class="ui divider"></div>
+              <div style="height: 400px; padding: 10px">
+                <nvd3-discrete-bar-chart
+                    yAxisTickPadding="yPadding"
+                    data="exampleData2"
+                    showXAxis="true"
+                    showYAxis="true"
+                    tooltips="true"
+                    xAxisTickFormat="xFormat"
+                    yAxisLabel="Order"
+                    interactive="true">
+                </nvd3-discrete-bar-chart>
+                <h2 style="margin-top: -15px">Total Order: {{totalOrder}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

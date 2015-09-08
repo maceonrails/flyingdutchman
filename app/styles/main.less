@@ -248,6 +248,7 @@ body.dashboard {
 
 #content {
   padding: 80px 0 0 86px;
+  overflow-x: hidden;
   > div > div {
     > .row {
       padding-bottom: 0;
@@ -418,4 +419,52 @@ button.delete.picture {
 .padding > .column:nth-child(2n) {
   padding-left: 20px !important;
   padding-right: 20px !important;
+}
+
+.one.column.padding {
+  padding: 40px 20px 30px 30px !important;
+
+  .content-workspace {
+    position: absolute;
+    right: -70px;
+    top: -12px;
+    width: 0% !important;
+
+    -webkit-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+       -moz-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+         -o-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+            transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+
+    &.active {
+      box-shadow: 0px 4px 16px #333 !important;
+      width: 50% !important;
+      right: -20px !important;
+    }
+  }
+}
+
+.floated.right.filters {
+  float: right;
+  margin-top: -70px;
+  .dropdown {
+    width: 50px !important;
+    float: left;
+    margin-right: 10px;
+  }
+  input {
+    width: 150px !important;
+    float: left;
+    margin-right: 10px;
+    &.data {
+      width: 300px !important;
+    }
+    &.button {
+      width: 100px !important;
+    }
+  }
+}
+
+.my.floated.right {
+  float: right;
+  margin-top: -45px;
 }

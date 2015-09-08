@@ -12,6 +12,7 @@ angular.module('erestoApp')
     $scope.printers   = [];
     $scope.this_user  = angular.copy($rootScope.user);
     $scope.addPrinter = false;
+    $rootScope.controller = 'settings';
     $scope.newprinter = {};
 
     Outlet.getData(1).then(function(res){

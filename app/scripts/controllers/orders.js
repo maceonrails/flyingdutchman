@@ -8,74 +8,47 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('OrdersCtrl', function ($scope, $rootScope, User, Outlet, Printer) {
-    $scope.printers   = [];
-    $scope.this_user  = angular.copy($rootScope.user);
-    $scope.addPrinter = false;
-    $scope.newprinter = {};
+  .controller('OrdersCtrl', function ($scope, $rootScope, Order) {
+    $rootScope.orders      = [];
+    $rootScope.controller  = 'reports';
+    $rootScope.filter      = {};
+    $rootScope.filter.page = 1;
+    $rootScope.total       = 1;
 
-    Outlet.getData(1).then(function(res){
-      $scope.outlet = res.outlets[0];
-    });
+    var d = new Date();
+    $rootScope.filter.dateEnd   = moment(d).format('DD/MM/YYYY');
+    $rootScope.filter.dateStart = moment(d.setDate(d.getDate() - 2)).format('DD/MM/YYYY');
 
-    var _reloadPrinters = function(){
-      Printer.getData().then(function(res){
-        $scope.printers = res.printers;
-        jQuery('.dimmer.printer').removeClass('active');
+    var _calculateTotal = function(data){
+      return isNaN(Math.ceil(data/10)) ? 1 : Math.ceil(data/10);
+    };
+
+    var _reloadOrders = function(){
+      jQuery('.dimmer.orders').addClass('active');
+      Order.getData($rootScope.filter).then(function(res){
+        $rootScope.orders   = res.orders;
+        $rootScope.total    = _calculateTotal(res.total);
+        $rootScope.selected = res.orders[0];
+        jQuery('.dimmer.orders').removeClass('active');
       }, function(){
-        jQuery('.dimmer.printer').removeClass('active');
+        jQuery('.dimmer.orders').removeClass('active');
       });
     };
 
-    _reloadPrinters();
+    _reloadOrders();
 
-    $scope.updateUser = function(){
-      jQuery('.dimmer.user').addClass('active');
-      User.update($scope.this_user).then(function(){jQuery('.dimmer.user').removeClass('active');},
-        function(){jQuery('.dimmer.user').removeClass('active');});
+    $scope.viewData = function(order){
+      $rootScope.selected = order;
+      jQuery('.content-workspace').addClass('active');
     };
 
-    $scope.updateOutlet = function(){
-      jQuery('.dimmer.outlet').addClass('active');
-      Outlet.update($scope.outlet).then(function(){jQuery('.dimmer.outlet').removeClass('active');},
-        function(){jQuery('.dimmer.outlet').removeClass('active');});
+    $scope.searchData = function(){
+      _reloadOrders();
     };
 
-    var reset_printer = function(){
-      jQuery('#newprinter-name').val('');
-      jQuery('#newprinter-printer').val('');
-      jQuery('#newprinter-default').prop('checked', false);
-    };
-
-    $scope.cancelAddPrinter = function(){
-      jQuery('#addPrinter').addClass('ng-hide');
-    };
-
-    $scope.showAddPrinter = function(){
-      jQuery('#addPrinter').removeClass('ng-hide');
-    };
-
-    $scope.savePrinter = function(){
-      var printer = { name: jQuery('#newprinter-name').val(), printer: jQuery('#newprinter-printer').val(), default: jQuery('#newprinter-default').is(':checked') };
-      Printer.save(printer).then(function(){
-        jQuery('.dimmer.printer').removeClass('active');
-        _reloadPrinters();
-        reset_printer();
-        $scope.cancelAddPrinter();
-      }, function(){
-        jQuery('.dimmer.printer').removeClass('active');
-      });
-    };
-
-    $scope.deletePrinter = function(printer){
-      Printer.delete(printer).then(function(){
-        jQuery('.dimmer.printer').removeClass('active');
-        _reloadPrinters();
-        reset_printer();
-        $scope.cancelAddPrinter();
-      }, function(){
-        jQuery('.dimmer.printer').removeClass('active');
-      });
+    $scope.dataPage = function(page){
+      $rootScope.filter.page = page;
+      _reloadOrders();
     };
 
   });

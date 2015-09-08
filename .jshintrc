@@ -23,6 +23,7 @@
     "window": false,
     "jQuery": false,
     "Pikaday": false,
-    "moment": false
+    "moment": false,
+    "d3": false
   }
 }
