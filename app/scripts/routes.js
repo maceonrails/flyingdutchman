@@ -46,7 +46,7 @@ App
           .state('app.restricted.outlets', {
             url: 'outlets',
             data: {
-              roles: ['superadmin']
+              roles: ['superadmin', 'owner']
             },
             templateUrl: 'views/outlets/index.html',
             controller: 'OutletsCtrl'
@@ -55,7 +55,7 @@ App
           .state('app.restricted.staff', {
             url: 'staff',
             data: {
-              roles: ['superadmin']
+              roles: ['superadmin', 'owner']
             },
             templateUrl: 'views/staffs/index.html',
             controller: 'StaffCtrl'
@@ -64,7 +64,7 @@ App
           .state('app.restricted.products', {
             url: 'products',
             data: {
-              roles: ['superadmin']
+              roles: ['superadmin', 'owner']
             },
             templateUrl: 'views/products/index.html',
             controller: 'ProductsCtrl'
@@ -73,10 +73,19 @@ App
           .state('app.restricted.discounts', {
             url: 'discounts',
             data: {
-              roles: ['superadmin']
+              roles: ['superadmin', 'owner']
             },
             templateUrl: 'views/discounts/index.html',
             controller: 'DiscountsCtrl'
+          })
+
+          .state('app.restricted.settings', {
+            url: 'settings',
+            data: {
+              roles: ['superadmin', 'owner']
+            },
+            templateUrl: 'views/settings/index.html',
+            controller: 'SettingsCtrl'
           })
 
 

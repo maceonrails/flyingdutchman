@@ -23,9 +23,14 @@
 
         <form class="ui form entry-form">
 
-          <div class="required field">
+          <div class="field">
             <label>Category</label>
-             <autocomplete ng-model="selected.category" data="categories" on-type="updateCategories" class="autocomplete" attr-placeholder="Product category" attr-name="category" autocomplete-required="true"></autocomplete>
+            <input name="category" placeholder="Product category" type="text" ng-model="selected.serv_category" disabled>
+          </div>
+
+          <div class="field">
+            <label>Sub Category</label>
+            <input name="category" placeholder="Product category" type="text" ng-model="selected.serv_sub_category" disabled>
           </div>
           <div class="required field">
             <label>Name</label>
