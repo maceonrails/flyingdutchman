@@ -2,8 +2,8 @@
 
 App
   .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
-    $urlRouterProvider.when('', '/dashboard');
+    $urlRouterProvider.otherwise('/orders');
+    $urlRouterProvider.when('', '/orders');
 
     $stateProvider
       .state('app', {
@@ -34,55 +34,55 @@ App
           },
           template: '<div ui-view> </div>'
         })
-          .state('app.restricted.users', {
-            url: 'users',
+          .state('app.restricted.orders', {
+            url: 'orders',
             data: {
-              roles: ['eresto']
+              roles: ['chef', 'bartender']
             },
-            templateUrl: 'views/users/index.html',
-            controller: 'UsersCtrl'
+            templateUrl: 'views/orders/index.html',
+            controller: 'OrdersCtrl'
           })
 
-          .state('app.restricted.outlets', {
-            url: 'outlets',
-            data: {
-              roles: ['superadmin', 'owner']
-            },
-            templateUrl: 'views/outlets/index.html',
-            controller: 'OutletsCtrl'
-          })
+          // .state('app.restricted.outlets', {
+          //   url: 'outlets',
+          //   data: {
+          //     roles: ['superadmin', 'owner']
+          //   },
+          //   templateUrl: 'views/outlets/index.html',
+          //   controller: 'OutletsCtrl'
+          // })
 
-          .state('app.restricted.staff', {
-            url: 'staff',
-            data: {
-              roles: ['superadmin', 'owner']
-            },
-            templateUrl: 'views/staffs/index.html',
-            controller: 'StaffCtrl'
-          })
+          // .state('app.restricted.staff', {
+          //   url: 'staff',
+          //   data: {
+          //     roles: ['superadmin', 'owner']
+          //   },
+          //   templateUrl: 'views/staffs/index.html',
+          //   controller: 'StaffCtrl'
+          // })
 
-          .state('app.restricted.products', {
-            url: 'products',
-            data: {
-              roles: ['superadmin', 'owner']
-            },
-            templateUrl: 'views/products/index.html',
-            controller: 'ProductsCtrl'
-          })
+          // .state('app.restricted.products', {
+          //   url: 'products',
+          //   data: {
+          //     roles: ['superadmin', 'owner']
+          //   },
+          //   templateUrl: 'views/products/index.html',
+          //   controller: 'ProductsCtrl'
+          // })
 
-          .state('app.restricted.discounts', {
-            url: 'discounts',
-            data: {
-              roles: ['superadmin', 'owner']
-            },
-            templateUrl: 'views/discounts/index.html',
-            controller: 'DiscountsCtrl'
-          })
+          // .state('app.restricted.discounts', {
+          //   url: 'discounts',
+          //   data: {
+          //     roles: ['superadmin', 'owner']
+          //   },
+          //   templateUrl: 'views/discounts/index.html',
+          //   controller: 'DiscountsCtrl'
+          // })
 
           .state('app.restricted.settings', {
             url: 'settings',
             data: {
-              roles: ['superadmin', 'owner']
+              roles: ['chef', 'bartender']
             },
             templateUrl: 'views/settings/index.html',
             controller: 'SettingsCtrl'

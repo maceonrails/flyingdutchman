@@ -176,4 +176,32 @@ App
       }
       return input;
     };
+  })
+  .directive('item', function(){
+      return {
+        restrict: 'C',
+        link: function (scope, element) {
+          element.bind('click', function(){
+            jQuery(element).toggleClass('done');
+            var doneList = jQuery(element).siblings('li.item.done').andSelf().length;
+            var undoneList = jQuery(element).siblings('li.item').andSelf().length;
+            if (doneList===undoneList) {
+              console.log('done');
+              jQuery(element).closest('.order-container')
+                .append('<div class="darken"></div>')
+                .children('.btn-done').show();
+            }
+          });
+        }
+      };
+  })
+  .directive('btnDone', function(){
+      return {
+        restrict: 'C',
+        link: function (scope, element) {
+          element.bind('click', function(){
+            jQuery(element).closest('.order-container').remove();
+          });
+        }
+      };
   });

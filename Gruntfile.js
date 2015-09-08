@@ -84,7 +84,7 @@ module.exports = function (grunt) {
       },
       localDependencies: {
         files: {
-          '<%= yeoman.app %>/index.html': ['<%= yeoman.app %>/scripts/**/*.js'],
+          '<%= yeoman.app %>/index.html': ['<%= yeoman.app %>/scripts/**/*.js', '!<%= yeoman.app %>/scripts/lib/**/*.js'],
         }
       }
     },
@@ -369,7 +369,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'styles/img/{,*/}*.*'
           ]
         }, {
           expand: true,
