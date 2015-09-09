@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:5000/v1');
+      .setBaseUrl('http://localhost:5500/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -78,9 +78,14 @@ App
       return response;
     };
   })
-  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress) {
+  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress, $interval) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       ngProgress.start();
+
+      //cancel interval 
+      if ($rootScope.interval){
+        $interval.cancel($rootScope.interval);
+      }
 
       // track the state the user wants to go to; authorization service needs this
       $rootScope.toState       = toState;

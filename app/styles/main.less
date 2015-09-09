@@ -34,116 +34,6 @@ body.dashboard {
     background-color: #1D2B4C !important;
     color: #fff;
   }
-  // h1 {
-  //   font-family: 'Roboto';
-  //   font-size: 120px;
-  //   font-weight: 100;
-  //   margin-bottom: 0;
-  //   color: @maincolor;
-  // }
-  // p {
-  //   font-size: 20px;
-  //   margin-top: -15px;
-  //   font-weight: 400;
-  //   margin-bottom: 20px;
-  //   color: #333;
-  // }
-
-  // button, .field{
-  //   border: 1px solid @maincolor;
-  //   background-color: white;
-  //   padding: 15px 50px;
-  //   height: 60px;
-  //   border-radius: 40px;
-  //   color: @maincolor;
-  //   font-size: 20px;
-  //   -webkit-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //      -moz-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //        -o-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //           transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  // }
-
-  // .field {
-  //   width: 250px;
-  //   margin: 0 auto;
-  //   position: relative;
-  //   overflow: hidden;
-  //   -webkit-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //      -moz-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //        -o-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //           transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //   i {
-  //     &.icon-mail {
-  //       padding: 8px 12px;
-  //     }
-
-  //     &.icon-key {
-  //       padding: 8px 13px;
-  //     }
-
-  //     &.icons {
-  //       position: absolute;
-  //       left: 0px;
-  //       font-size: 30px;
-  //       border: 1px solid @maincolor;
-  //       border-radius: 40px;
-  //       margin-top: -15px;
-  //       -webkit-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //          -moz-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //            -o-transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //               transition: left 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-  //     }
-  //     &.submit {
-  //       right: 11px;
-  //       position: absolute;
-  //       background-color: #eee;
-  //       padding: 6px 9px;
-  //       border-radius: 45px;
-  //       margin-top: -5px;
-  //       cursor: pointer;
-  //       z-index: 10;
-  //     }
-
-  //     &.ishadow {
-  //       &:before {
-  //         content: ' '
-  //       }
-  //       padding: 28px 29px;
-  //       position: absolute;
-  //       left: 0;
-  //       border-radius: 40px;
-  //       margin-top: -15px;
-  //       border: 1px solid lighten(@maincolor, 20%);
-  //     }
-  //   }
-
-  //   label {
-  //     position: absolute;
-  //     left: 76px;
-  //     z-index: 5;
-  //     margin-top: -11px;
-  //     color: #888;
-  //     font-weight: 500;
-  //     font-size: 14px;
-  //   }
-
-  //   input {
-  //     border: none;
-  //     position: absolute;
-  //     left: 70px;
-  //     background: transparent;
-  //     margin-top: 4px;
-  //     font-size: 18px;
-  //     color: @maincolor;
-  //     font-family: 'Roboto Mono';
-  //     width: 108px;
-  //     &:focus {
-  //       outline: none;
-  //       border-color: white;
-  //       box-shadow: none
-  //     }
-  //   }
-  // }
 }
 
 .navbar.fixed {
@@ -521,6 +411,7 @@ button.delete.picture {
   background-color:white;
   font-size:14px;
   z-index:1;
+  box-shadow: 1px 1px 1px #333;
 }
 
 .order-container .btn-done {
@@ -555,7 +446,7 @@ button.delete.picture {
 }
 
 .order-container:first-child h1 {
-  font-size:30px;
+  font-size:25px;
   padding:20px 0 10px;
 }
 
@@ -565,7 +456,7 @@ button.delete.picture {
 }
 
 .order-container:first-child .item-quantity, .order-container:first-child .item-name, .order-container:first-child .item-status {
-  font-size:23px;
+  font-size:20px;
   line-height:60px;
 }
 
@@ -586,7 +477,7 @@ button.delete.picture {
 }
 
 .order-container:first-child ul.notes-list li.note {
-  font-size:18px;
+  font-size:16px;
   padding:6px 0;
   border-bottom:2px solid #ccc;
 }
@@ -616,6 +507,7 @@ button.delete.picture {
   height:100%;
   width:100%;
   padding:15px;
+  padding-right: 0;
   z-index:3;
   overflow:hidden;
 }
@@ -628,7 +520,7 @@ button.delete.picture {
   padding-bottom:10px;
   margin-left:40px;
   height:10%;
-  font-size:25px;
+  font-size:20px;
   color:#844204;
   font-weight:bold;
   text-align:center;
@@ -636,7 +528,7 @@ button.delete.picture {
 }
 
 .order-container .item-quantity, .order-container .item-name, .order-container .item-status {
-  font-size:12px;
+  font-size:11px;
   line-height:30px;
 }
 
@@ -651,7 +543,7 @@ button.delete.picture {
 
 .order-container .item-name {
   float:left;
-  padding:5px;
+  padding:5px 2px;
   font-weight:bold;
   max-width:250px;
 }
@@ -662,7 +554,7 @@ button.delete.picture {
 
 .order-container ul.items-list {
   height:90%;
-  padding-right:15px;
+  padding-right:0px;
   overflow-y:auto;
   padding-left: 0;
 }
@@ -725,14 +617,14 @@ button.delete.picture {
   display:block;
   height:auto;
   padding:8px;
-  padding-left: 15px;
+  padding-left: 20px;
   background-color:#fbfbfb;
   margin-left:40px;
-  margin-top: -20px;
+  margin-top: -18px;
 }
 
 .order-container ul.notes-list li.note {
-  font-size:11px;
+  font-size:12px;
   padding:4px 0;
   padding-left: 10px;
   border-bottom:1px solid #ccc;

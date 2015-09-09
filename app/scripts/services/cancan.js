@@ -24,7 +24,7 @@ angular.module('erestoApp')
         if (!_authenticated || !_identity.role) {
           return false;
         }
-        console.log(role);
+        
         for (var i = 0; i < role.length; i++) {
           if (this.isInRole(role[i])) {
             return true;

@@ -177,7 +177,7 @@ App
       return input;
     };
   })
-  .directive('item', function(){
+  .directive('item', function(Order){
       return {
         restrict: 'C',
         link: function (scope, element) {
@@ -185,6 +185,10 @@ App
             jQuery(element).toggleClass('done');
             var doneList = jQuery(element).siblings('li.item.done').andSelf().length;
             var undoneList = jQuery(element).siblings('li.item').andSelf().length;
+            var order_id = jQuery(element).attr('order-id');
+            
+            Order.updateItemServed(order_id);
+
             if (doneList===undoneList) {
               console.log('done');
               jQuery(element).closest('.order-container')

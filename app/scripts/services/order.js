@@ -11,6 +11,10 @@ angular.module('erestoApp')
       },
       getGraphOrder: function(query) {
         return Restangular.one('orders', 'graph_by_order').customGET('', query);
-      }
+      },
+      updateItemServed: function(id) {
+        return Restangular.all('order_items').one(id, 'toggle_served')
+          .customPUT({}, null, {}, {});
+      },
     };
   });
