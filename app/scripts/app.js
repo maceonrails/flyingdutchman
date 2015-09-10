@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://api-bober.eresto.io/v1');
+      .setBaseUrl('http://localhost:5000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })

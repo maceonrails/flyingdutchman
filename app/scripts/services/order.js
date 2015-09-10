@@ -5,6 +5,12 @@ angular.module('erestoApp')
     return {
       getData: function(query) {
         return Restangular.one('orders', 'search').customGET('', query);
+      },
+      getGraphRevenue: function(query) {
+        return Restangular.one('orders', 'graph_by_revenue').customGET('', query);
+      },
+      getGraphOrder: function(query) {
+        return Restangular.one('orders', 'graph_by_order').customGET('', query);
       }
     };
   });

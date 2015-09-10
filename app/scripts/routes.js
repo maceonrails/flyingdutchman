@@ -88,6 +88,15 @@ App
             controller: 'SettingsCtrl'
           })
 
+          .state('app.restricted.orders', {
+            url: 'orders',
+            data: {
+              roles: ['superadmin', 'owner']
+            },
+            templateUrl: 'views/orders/index.html',
+            controller: 'OrdersCtrl'
+          })
+
 
       .state('welcome', {
         url: '/welcome',
