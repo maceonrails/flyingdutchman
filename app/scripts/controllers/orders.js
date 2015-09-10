@@ -21,6 +21,7 @@ angular.module('erestoApp')
           var have_food = false;
           var order     = res.orders[i];
           var deleteIdx = [];
+          var unserved  = 0;
           for (var j = 0; j < order.products.length; j++) {
             var item    = order.products[j];
             var checker = false;
@@ -31,6 +32,10 @@ angular.module('erestoApp')
               checker = item.serv_category !== 'FOODS';
             }
             if (checker){
+              if (!item.served){
+                unserved++;
+              }
+
               have_food = true;
               if (item.note !== null || item.order !== ''){
                 res.orders[i].products[j].note = item.note.split(',');
@@ -56,7 +61,7 @@ angular.module('erestoApp')
             res.orders[i].products.splice(deleteIdx[k],1);
           }
 
-          if (have_food){
+          if (have_food && unserved > 0){
             orders.push(res.orders[i]);
           }
         }

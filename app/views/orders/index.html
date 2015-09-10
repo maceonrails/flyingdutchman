@@ -1,7 +1,8 @@
 <div class="main-container cf" ng-if="orders.length > 0">
-  <div class="order-container" ng-repeat="order in orders" >
+  <div class="order-container" ng-repeat-start="order in orders track by $index" >
     <div class="order-inner-container">
-      <h1>Pesanan 253</h1>
+      <h1 ng-if="order.table_id">Meja {{order.table.name}}</h1>
+      <h1 ng-if="!order.table_id">Pesanan #{{order.queue_number}}</h1>
       <ul class="items-list">
         <li ng-class="{done: item.served}" class="item" ng-repeat="item in order.products track by $index" order-id="{{item.order_item_id}}">
           <div class="item-properties cf">
@@ -15,6 +16,11 @@
       </ul>
     </div>
     <a href="" class="btn-done"></a>
+  </div>
+  <div ng-repeat-end >
+    <br style="clear: both" ng-if="$index == 3">
+    <br style="clear: both" ng-if="$index == 8">
+    <br style="clear: both" ng-if="$index > 8 && ($index-3)%5 === 0">
   </div>
 </div>
 
