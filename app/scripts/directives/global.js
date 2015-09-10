@@ -126,6 +126,7 @@ App
       link: function (scope, element) {
         var lHeight = $window.innerHeight - 100;
         jQuery(element).css('min-height',lHeight +'px');
+        jQuery('#content').css('min-height',$window.innerHeight +'px');
       }
     };
   })
@@ -136,6 +137,27 @@ App
         new Pikaday({
           field: jQuery(element)[0],
           format: 'ddd, D MMM YYYY'
+        });
+      }
+    };
+  })
+  .directive('pikaday', function () {
+    return {
+      restrict: 'C',
+      link: function (scope, element) {
+        new Pikaday({
+          field: jQuery(element)[0],
+          format: 'DD/MM/YYYY'
+        });
+      }
+    };
+  })
+  .directive('hidePanel', function () {
+    return {
+      restrict: 'C',
+      link: function (scope, element) {
+        element.bind('click', function () {
+          jQuery(element).parent().removeClass('active');
         });
       }
     };
@@ -175,5 +197,81 @@ App
         input.push(i);
       }
       return input;
+    };
+  })
+  .filter('dinein', function() {
+    return function(input) {
+      var total = 0;
+      for (var i = 0; i < input.length; i++) {
+        if (!input[i].take_away && !input[i].void){
+          total++;
+        }
+      }
+
+      if (total > 0){
+        return total+' items';
+      }else{
+        return '0 item';
+      }
+    };
+  })
+  .filter('takeaway', function() {
+    return function(input) {
+      var total = 0;
+      for (var i = 0; i < input.length; i++) {
+        if (input[i].take_away && !input[i].void){
+          total++;
+        }
+      }
+
+      if (total > 0){
+        return total+' items';
+      }else{
+        return '0 item';
+      }
+    };
+  })
+  .filter('prices', function() {
+    return function(input) {
+      var total = 0;
+      for (var i = 0; i < input.length; i++) {
+        if ( !input[i].void){
+          total += parseInt(input[i].paid_amount);
+        }
+      }
+
+      return 'Rp '+total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    };
+  })
+
+  .filter('mycurrency', function() {
+    return function(input) {
+      var total = parseInt(input);
+      return 'Rp '+total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    };
+  })
+
+  .filter('served', function() {
+    return function(input) {
+      var served = true;
+      for (var i = 0; i < input.length; i++) {
+        if ( !input[i].served){
+          served = false;
+        }
+      }
+      var to_return = served ? 'Yes' : 'No';
+      return to_return;
+    };
+  })
+  .filter('getdate', function() {
+    return function(input) {
+      var date = new Date(input);
+      return moment(date).format('MMMM Do YYYY');
+    };
+  })
+  .filter('gettime', function() {
+    return function(input) {
+      var date = new Date(input);
+      return moment(date).format('h:mm:ss a');
     };
   });

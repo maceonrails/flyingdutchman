@@ -1,6 +1,6 @@
 <div class="ui one column padding grid" ng-init="initial()">
     <div class="row ">
-      <div class="column" ng-if="$root.user.role == 'manager'">
+      <div class="column">
         <div class="ui piled segment">
           <div class="ui inverted dimmer orders">
             <div class="ui large loader"></div>
@@ -10,7 +10,7 @@
           <form class="floated right filters" ng-submit="searchData()">
             <div class="ui form entry-form">
               <div class="field">
-                <input class="data" ng-model="$root.filter.data" type="text" placeholder="filter by name or table">
+                <input class="data" ng-model="$root.filter.data" type="text" placeholder="filter by name or outlet">
                 <input class="pikaday" ng-model="$root.filter.dateStart" type="text" placeholder="filter by date start" required>
                 <input class="pikaday" ng-model="$root.filter.dateEnd" type="text" placeholder="filter by date end" required>
                 <input type="submit" class="ui button blue" value="Filter">
@@ -21,28 +21,34 @@
           <table class="ui compact celled table form">
             <thead>
               <tr>
+                <th>Outlet</th>
                 <th>Name</th>
                 <th>Servant</th>
-                <th>Table</th>
                 <th>Dine In</th>
                 <th>Take Away</th>
                 <th>Served</th>
                 <th>Order Date</th>
                 <th>Order Time</th>
-                <th>Price incld taxs and discounts</th>
+                <th>Order Discount Amount</th>
+                <th>Order Discount Percentage</th>
+                <th>Order Discount By</th>
+                <th>Price incld taxs, order item discounts, and w/o order discount</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="order in orders">
+                <td>{{order.outlet.name}}</td>
                 <td>{{order.name}}</td>
                 <td>{{order.servant.name}}</td>
-                <td>{{order.table.name}}</td>
                 <td>{{order.products | dinein}}</td>
                 <td>{{order.products | takeaway}}</td>
                 <td>{{order.products | served}}</td>
                 <td>{{order.created_at | getdate}}</td>
                 <td>{{order.created_at | gettime}}</td>
+                <td>{{order.discount_amount | prices}}</td>
+                <td>{{order.discount_percent}}%</td>
+                <td>{{order.discount_by}}</td>
                 <td>{{order.products | prices}}</td>
                 <td>
                   <div class="ui button small white" ng-click="viewData(order)">View</div>
@@ -51,7 +57,7 @@
             </tbody>
             <tfoot class="full-width">
               <tr>
-                <th colspan="10">
+                <th colspan="13">
                   <div class="ui pagination menu right floated">
                     <a class="active item" ng-repeat="page in [] | range:total" ng-if="total > 1" ng-click="dataPage(page+1)">
                       {{page + 1}}
@@ -87,8 +93,8 @@
               <div class="message"></div>
             </div>
             <div class="field">
-              <label>Table</label>
-              <p>{{selected.table.name}}</p>
+              <label>Outlet</label>
+              <p>{{selected.outlet.name}}</p>
               <div class="message"></div>
             </div>
           </div>
