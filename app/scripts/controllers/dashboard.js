@@ -16,8 +16,17 @@ angular.module('erestoApp')
 
     var _reloadRevenue = function(){
       Order.getGraphRevenue({timeframe: $rootScope.graphRevenue}).then(function(res){
-        $scope.exampleData  = [{key: 'Revenue', values: res}];
-        $scope.totalRevenue = 'Rp '+d3.format(',')(lodash.sum(res, function(n){ return n[1];}));
+        var grouped2 = lodash.groupBy(res, function(n) { return n[0]; });
+        var results2 = [];
+        lodash.forEach(grouped2, function(n, key) {
+          var tmp2 = [];
+          tmp2[0]  = parseInt(key);
+          tmp2[1]  = lodash.sum(n, function(b){ return b[1]; });
+          results2.push(tmp2);
+        });
+
+        $scope.exampleData  = [{key: 'Revenue', values: results2}];
+        $scope.totalRevenue = 'Rp '+d3.format(',')(lodash.sum(results2, function(n){ return n[1];}));
       });
     };
 
@@ -31,8 +40,17 @@ angular.module('erestoApp')
 
     var _reloadOrder = function(){
       Order.getGraphOrder({timeframe: $rootScope.graphOrder}).then(function(res){
-        $scope.exampleData2  = [{key: 'Order', values: res}];
-        $scope.totalOrder    = lodash.sum(res, function(n){ return n[1];});
+        var grouped = lodash.groupBy(res, function(n) { return n[0]; });
+        var results = [];
+        lodash.forEach(grouped, function(n, key) {
+          var tmp = [];
+          tmp[0]  = parseInt(key);
+          tmp[1]  = lodash.sum(n, function(b){ return b[1]; });
+          results.push(tmp);
+        });
+
+        $scope.exampleData2  = [{key: 'Order', values: results}];
+        $scope.totalOrder    = lodash.sum(results, function(n){ return n[1];});
       });
     };
 
