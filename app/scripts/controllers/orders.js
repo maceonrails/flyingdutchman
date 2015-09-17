@@ -17,7 +17,7 @@ angular.module('erestoApp')
 
     var d = new Date();
     $rootScope.filter.dateEnd   = moment(d).format('DD/MM/YYYY');
-    $rootScope.filter.dateStart = moment(d.setDate(d.getDate() - 2)).format('DD/MM/YYYY');
+    $rootScope.filter.dateStart = moment(d.setDate(d.getDate() - 7)).format('DD/MM/YYYY');
 
     var _calculateTotal = function(data){
       return isNaN(Math.ceil(data/10)) ? 1 : Math.ceil(data/10);
