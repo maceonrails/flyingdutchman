@@ -21,11 +21,11 @@ angular.module('erestoApp')
       {title: 'Owner', value: 'owner'},
       {title: 'Superadmin', value: 'superadmin'},
       {title: 'Manager', value: 'manager'},
-      {title: 'Assistant Manager', value: 'assistant_manager'},
       {title: 'Waitress', value: 'waitress'},
       {title: 'Captain', value: 'captain'},
       {title: 'Cashier', value: 'cashier'},
-      {title: 'Chef', value: 'chef'}
+      {title: 'Chef', value: 'chef'},
+      {title: 'Bartender', value: 'bartender'}
     ];
 
     // ng init
@@ -43,7 +43,7 @@ angular.module('erestoApp')
             }
           });
 
-      Outlet.getData(page)
+      Outlet.getAll()
         .then(
           function(res){
             if (res.outlets !== undefined) {

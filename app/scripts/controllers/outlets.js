@@ -46,7 +46,7 @@ angular.module('erestoApp')
       if(arr === null || arr === undefined){ arr = []; }
       var to_return =  {};
       for (var i = arr.length - 1; i >= 0; i--) {
-        if (arr[i].value !== '0'){
+        if (arr[i].value !== '0' && arr[i].value !== '' && arr[i].label !== ''){
           to_return[arr[i].label] = arr[i].value;
         }
       }
@@ -72,7 +72,11 @@ angular.module('erestoApp')
       if (!$scope.selected.taxs){
         $scope.selected.taxs = [];
       }
-      $scope.selected.taxs.push({label: 'New tax', value: 0});
+      $scope.selected.taxs.push({label: '', value: 0});
+    };
+
+    $scope.removeTax = function(idx){
+      $scope.selected.taxs.splice(idx, 1);
     };
 
     $scope.saveData = function(){

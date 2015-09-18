@@ -51,20 +51,27 @@
           <h4 class="ui top attached header blue">Tax Components</h4>
           <div class="ui bottom attached segment">
             <div class="two fields" ng-repeat="tax in selected.taxs">
-              <div class="field">
+              <div class="field" style="margin-bottom: 0 !important">
                 <label>Tax name</label>
                 <input name="tax_name" type="text" placeholder="Name" ng-model="tax.label">
               </div>
-              <div class="field">
+              <div class="field" style="margin-bottom: 0 !important">
                 <label>Tax amount</label>
-                <div class="ui corner labeled input">
-                  <input name="confirmation" type="text" placeholder="Amount" ng-model="tax.value">
-                  <div class="ui corner label"><i class="icon">%</i></div>
+                <div class="two fields">
+                  <div class="ui corner labeled input field">
+                    <input name="confirmation" type="text" placeholder="Amount" ng-model="tax.value">
+                    <div class="ui corner label"><i class="icon">%</i></div>
+                  </div>
+                  <div class="field">
+                    <div class="ui button red" ng-click="removeTax($index)">Remove</div>
+                  </div>
                 </div>
+                
               </div>
             </div>
-            <a href="" ng-click="addTax()">Add New</a>
+            <a href="" ng-click="addTax()" class="ui button blue">Add New</a>
           </div>
+          <br>
 
           <div class="ui error message">
             <div class="header">We noticed some issues</div>

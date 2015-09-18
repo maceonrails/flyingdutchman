@@ -21,6 +21,9 @@ angular.module('erestoApp')
             .customGET('', { page: page });
         }
       },
+      getAll: function() {
+        return Restangular.one('outlets', 'all').get();
+      },
       save: function(outlet) {
         jQuery('.content-workspace > .dimmer').addClass('active');
         return Restangular.all('outlets')

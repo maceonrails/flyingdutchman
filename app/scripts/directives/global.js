@@ -125,7 +125,10 @@ App
       restrict: 'C',
       link: function (scope, element) {
         var lHeight = $window.innerHeight - 100;
+        var dHeight = jQuery(document).height() - 100;
+        lHeight     = lHeight > dHeight ? lHeight : dHeight;
         jQuery(element).css('min-height',lHeight +'px');
+        jQuery('.content-workspace.report').css('height',(lHeight+10) +'px');
         jQuery('#content').css('min-height',$window.innerHeight +'px');
       }
     };

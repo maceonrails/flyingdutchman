@@ -19,8 +19,6 @@ angular.module('erestoApp')
     $scope.imageErrorMsg  = null;
     $rootScope.controller = 'products';
 
-    console.log($scope.selected);
-
     // ng init
     $rootScope.initial = function(xpage){
       var page = xpage || 1;
@@ -68,13 +66,23 @@ angular.module('erestoApp')
       $scope.selected.picture        = null;
     };
 
+    $scope.addChoice = function(){
+      if (!$scope.selected.choices){
+        $scope.selected.choices = [];
+      }
+      $scope.selected.choices.push({name: '', id: ''});
+    };
+
+    $scope.removeChoice = function(idx){
+      $scope.selected.choices.splice(idx, 1);
+    };
+
     $scope.selectProduct = function(idx){
       $scope.selected        = angular.copy($scope.products[idx]);
       $scope.selectedID      = idx;
       $scope.formType        = 'existing';
       $scope.selected.result = '';
       $scope.imageError      = false;
-
       jQuery('label.error').remove();
       jQuery('input.error, select.error, textarea.error').removeClass('error');
     };

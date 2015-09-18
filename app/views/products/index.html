@@ -6,7 +6,7 @@
             <i class="food icon"></i>
             <div class="content">
               <div class="header">{{product.name || 'No name'}}</div>
-              <div class="description">{{product.category}}</div>
+              <div class="description"><b>{{product.serv_category}}</b> - {{product.serv_sub_category}}</div>
             </div>
           </div>
         </div>
@@ -22,27 +22,54 @@
         <div class="ui divider"></div>
 
         <form class="ui form entry-form">
+          <div class="two fields">
+            <div class="field">
+              <label>Category</label>
+              <select ng-model="selected.serv_category" name="category">
+                <option value="DRINKS">DRINKS</option>
+                <option value="FOODS">FOODS</option>
+                <option value="SHEESA AND SNACKS">SHEESA AND SNACKS</option>
+              </select>
+            </div>
 
-          <div class="field">
-            <label>Category</label>
-            <input name="category" placeholder="Product category" type="text" ng-model="selected.serv_category">
+            <div class="field">
+              <label>Sub Category</label>
+              <input name="category" placeholder="Product category" type="text" ng-model="selected.serv_sub_category">
+            </div>
           </div>
-
-          <div class="field">
-            <label>Sub Category</label>
-            <input name="category" placeholder="Product category" type="text" ng-model="selected.serv_sub_category">
-          </div>
-          <div class="required field">
-            <label>Name</label>
-             <input name="name" placeholder="Product name" type="text" ng-model="selected.name" required>
-          </div>
-          <div class="required field">
-            <label>Default Price</label>
-             <input name="price" placeholder="Product name" type="text" ng-model="selected.default_price" required>
+          <div class="two fields">
+            <div class="required field">
+              <label>Name</label>
+               <input name="name" placeholder="Product name" type="text" ng-model="selected.name" required>
+            </div>
+            <div class="required field">
+              <label>Default Price</label>
+               <input name="price" placeholder="Product name" type="text" ng-model="selected.default_price" required>
+            </div>
           </div>
           <div class="required field">
             <label>Description</label>
             <textarea name="address" placeholder="Product Description" ng-model="selected.description" required></textarea>
+          </div>
+
+          <h4 class="ui top attached header blue">Choices</h4>
+          <div class="ui bottom attached segment">
+            <div class="two fields" ng-repeat="choice in selected.choices">
+              <div class="field" style="margin-bottom: 0 !important">
+                <label>Choice name</label>
+                <input name="tax_name" type="text" placeholder="Name" ng-model="choice.name">
+              </div>
+              <div class="field" style="margin-bottom: 0 !important">
+                <label class="transparent">actions</label>
+                <div class="two fields">
+                  <div class="field">
+                    <div class="ui button red" ng-click="removeChoice($index)">Remove</div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <a href="" ng-click="addChoice()" class="ui button blue">Add New</a>
           </div>
 
           <h4 class="ui top attached header">Product Image <span class="red">*</span></h4>
