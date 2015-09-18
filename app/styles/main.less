@@ -249,6 +249,7 @@ body.dashboard {
 #content {
   padding: 80px 0 0 86px;
   overflow-x: hidden;
+  overflow-y: hidden;
   > div > div {
     > .row {
       padding-bottom: 0;
@@ -284,6 +285,13 @@ body.dashboard {
     background-color: #FFF;
     border-left: 1px solid rgba(39, 41, 43, 0.15);
     padding: 30px;
+
+    &.report {
+      position: fixed;
+      top: 90px;
+      padding-bottom: 35px;
+      overflow: auto;
+    }
 
     h2 {
       margin-top: 0;
@@ -437,7 +445,7 @@ button.delete.picture {
 
     &.active {
       box-shadow: 0px 4px 16px #333 !important;
-      width: 50% !important;
+      width: 90% !important;
       right: -20px !important;
     }
   }
