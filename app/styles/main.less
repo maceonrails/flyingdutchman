@@ -9,15 +9,15 @@
 }
 
 body {
-  background-color: @maincolor;
+  background: url(../images/bober_bg.jpg) repeat;
 }
 
 body.dashboard {
-  background-color: #FFF;
+  background: #FFF;
 }
 
 body.dashboard {
-  background-color: #F4F7FA;
+  background: #F4F7FA;
 }
 
 #welcome {
@@ -26,9 +26,21 @@ body.dashboard {
   top: 40%;
   text-align: center;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 50px 40px;
   width: 450px;
+  box-shadow: 3px 4px 6px #333;
+
+  .ui.button.main {
+    background-color: #722D23 !important;
+    color: #fff;
+  }
+
+  h1 {
+    font-family: 'Roboto';
+    color: @maincolor;
+    font-size: 45px;
+  }
 
   .ui.button.main {
     background-color: #1D2B4C !important;

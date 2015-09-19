@@ -25,7 +25,7 @@ angular.module('erestoApp')
           for (var j = 0; j < order.products.length; j++) {
             var item    = order.products[j];
             var checker = false;
-            
+
             if (food) {
               checker = item.serv_category === 'FOODS';
             }else {
@@ -55,7 +55,7 @@ angular.module('erestoApp')
             }
           }
 
-          //delete data 
+          //delete data
           // var holder = angular.copy(res.orders);
           for (var k = deleteIdx.length - 1; k >= 0; k--) {
             res.orders[i].products.splice(deleteIdx[k],1);
@@ -69,6 +69,6 @@ angular.module('erestoApp')
       });
     };
 
-    $rootScope.interval = $interval(_reloadOrders, 150000);
+    $rootScope.interval = $interval(_reloadOrders, 30000);
     _reloadOrders();
   });

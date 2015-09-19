@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://localhost:5500/v1');
+      .setBaseUrl('http://192.168.1.251/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -82,7 +82,7 @@ App
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       ngProgress.start();
 
-      //cancel interval 
+      //cancel interval
       if ($rootScope.interval){
         $interval.cancel($rootScope.interval);
       }
