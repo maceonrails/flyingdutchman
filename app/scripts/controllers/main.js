@@ -68,13 +68,15 @@ angular.module('erestoApp')
         var staffs    = Cloud.one('users', 'all')
                           .customGET('', {'filter[outlet_id]': $rootScope.outlet_id});
         var category  = Cloud.one('product_categories', 'all').get();
+        var discount  = Cloud.one('discounts', 'all')
+                          .customGET('', {'filter[outlet_id]': $rootScope.outlet_id});
 
-        $q.all([products, staffs, outlet, category])
+        $q.all([products, staffs, outlet, category, discount])
           .then(function(results){
             $rootScope.syncActive = 'saving';
 
             Restangular.all('sync')
-              .customPOST(angular.extend(results[0], results[1], results[2], results[3]), null, {}, {})
+              .customPOST(angular.extend(results[0], results[1], results[2], results[3], results[4]), null, {}, {})
               .then(function(){
                 jQuery('.ui.modal').modal('hide');
                 $rootScope.syncActive = false;

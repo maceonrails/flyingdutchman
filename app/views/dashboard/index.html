@@ -67,3 +67,30 @@
     </div>
   </div>
 </div>
+
+<div class="ui one column padding grid" style="margin-top: -50px;">
+  <div class="row">
+    <div class="column" ng-if="$root.user.role == 'manager'">
+      <div class="ui piled segment">
+        <div class="ui two column grid">
+          <div class="row">
+
+            <div class="column" style="padding-bottom: 30px;">
+              <h3>Top Selling Product</h3>
+              <ul class="ui list">
+                <li ng-repeat="n in tops">{{n[1]}} items of {{n[0]}}</li>
+              </ul>
+            </div>
+
+            <div class="column" style="padding-bottom: 30px;">
+              <h3>Bottom Selling Product</h3>
+              <ul class="ui list">
+                <li ng-repeat="n in bots">{{n[1]}} items of {{n[0]}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://467702611e92.sn.mynetname.net:2023/v1');
+      .setBaseUrl('http://192.168.1.251/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -73,7 +73,7 @@ App
       return response;
     };
   })
-  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress) {
+  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress, $window) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       ngProgress.start();
 
@@ -88,6 +88,6 @@ App
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); });
+    $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); $window.scrollTo(0,0);});
     $rootScope.$on('$stateChangeError', function(){ ngProgress.complete(); });
   });

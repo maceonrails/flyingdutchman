@@ -8,11 +8,24 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams, Order, lodash) {
+  .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams, Order, lodash, Restangular) {
     $rootScope.token        = $stateParams.token; // set token from params
     $rootScope.graphRevenue = 'this_week';
     $rootScope.graphOrder   = 'this_week';
     $scope.exampleData      = [];
+
+    var get_product_selling_details = function(){
+      Restangular.one('orders', 'get_order_quantity').get()
+        .then(function(res){
+          var ordered  = lodash.sortByAll(res, function(r){ return r[1];}).reverse();
+          var chunked  = lodash.chunk(ordered, 5);
+          var chunked2 = lodash.chunk(ordered.reverse(), 5);
+          $scope.tops  = lodash.first(chunked);
+          $scope.bots  = lodash.last(chunked2);
+        });
+    };
+
+    get_product_selling_details();
 
     var _reloadRevenue = function(){
       Order.getGraphRevenue({timeframe: $rootScope.graphRevenue}).then(function(res){

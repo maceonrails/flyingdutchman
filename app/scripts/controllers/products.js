@@ -62,6 +62,17 @@ angular.module('erestoApp')
       $scope.formType       = 'new';
     };
 
+    $scope.addChoice = function(){
+      if (!$scope.selected.choices){
+        $scope.selected.choices = [];
+      }
+      $scope.selected.choices.push({name: '', id: ''});
+    };
+
+    $scope.removeChoice = function(idx){
+      $scope.selected.choices.splice(idx, 1);
+    };
+
     $scope.removePicture = function(){
       $scope.selected.picture_base64 = null;
       $scope.selected.picture        = null;
