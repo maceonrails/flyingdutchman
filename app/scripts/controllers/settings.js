@@ -8,7 +8,7 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('SettingsCtrl', function ($scope, $rootScope, User, Outlet, Printer) {
+  .controller('SettingsCtrl', function ($scope, $rootScope, User) {
     $scope.printers   = [];
     $scope.this_user  = angular.copy($rootScope.user);
     $rootScope.controller = 'settings';

@@ -120,7 +120,7 @@ angular.module('erestoApp')
         var _isNaN  = isNaN(parseInt(newVal.percentage));
         var percent = _isNaN ? 0 : parseInt(newVal.percentage);
         percent     = percent / 100;
-        var prd     = lodash.find($scope.products, function(r){return r.id === $scope.selected.product_id});
+        var prd     = lodash.find($scope.products, function(r){return r.id === $scope.selected.product_id;});
         var disct   = percent * prd.price;
         $scope.selected.amount = disct;
       }

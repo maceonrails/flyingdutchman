@@ -6,7 +6,7 @@
             <i class="ticket icon"></i>
             <div class="content">
               <div class="header">{{discount.name || 'No name'}}</div>
-              <div class="description">Rp. {{discount.amount}}</div>
+              <div class="description"><b>{{discount.product}}</b>, Rp. {{discount.amount}}</div>
             </div>
           </div>
         </div>
@@ -33,6 +33,18 @@
               <input name="email">
             </div>
           </div>
+
+          <div class="two fields">
+            <div class="field required">
+              <label>Start date</label>
+              <input name="amount" placeholder="Start date" type="text" ng-model="selected.start_date" required class="pikaday">
+            </div>
+            <div class="field required">
+              <label>End date</label>
+              <input name="amount" placeholder="End date" type="text" ng-model="selected.end_date" required class="pikaday">
+            </div>
+          </div>
+
           <div class="two fields">
             <div class="field required">
               <label>Product</label>
@@ -57,6 +69,7 @@
               <label>Amount</label>
             </div>
           </div>
+
           <div class="field">
             <label>Assign to outlet</label>
             <select chosen
