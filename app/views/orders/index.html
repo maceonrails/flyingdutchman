@@ -1,5 +1,5 @@
 <div class="main-container cf" ng-if="orders.length > 0">
-  <div class="order-container" ng-repeat-start="order in orders track by $index" >
+  <div class="order-container" ng-repeat="order in orders track by $index" >
     <div class="order-inner-container">
       <h1 ng-if="order.table_id">Meja {{order.table.name}}</h1>
       <h1 ng-if="!order.table_id">Pesanan #{{order.queue_number}}</h1>
