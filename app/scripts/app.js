@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://467702611e92.sn.mynetname.net:2023/v1');
+      .setBaseUrl('http://192.168.1.251/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
