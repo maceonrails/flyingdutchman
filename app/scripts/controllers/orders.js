@@ -37,7 +37,7 @@ angular.module('erestoApp')
               }
 
               have_food = true;
-              if (item.note !== null || item.order !== ''){
+              if ((item.note !== null) && (item.note !== '')){
                 res.orders[i].products[j].note = item.note.split(',');
               } else {
                 res.orders[i].products[j].note = [];
@@ -66,7 +66,12 @@ angular.module('erestoApp')
           }
         }
         $scope.orders = orders;
+	console.log(orders);
       });
+    };
+
+    $rootScope.reload  = function(){
+      _reloadOrders();
     };
 
     $rootScope.interval = $interval(_reloadOrders, 30000);

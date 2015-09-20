@@ -199,11 +199,13 @@ App
         }
       };
   })
-  .directive('btnDone', function(){
+  .directive('btnDone', function($rootScope){
       return {
         restrict: 'C',
         link: function (scope, element) {
           element.bind('click', function(){
+	    jQuery(element).hide();
+            $rootScope.reload();
             jQuery(element).closest('.order-container').remove();
           });
         }
