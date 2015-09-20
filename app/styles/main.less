@@ -410,6 +410,13 @@ button.delete.picture {
   zoom: 1; /* ie 6/7 */
 }
 
+.main-container-wrapper {
+	height: 100%;
+	&>div {
+		height: 100%;
+		background-color: pink;
+	}
+}
 .main-container {
 	box-sizing: border-box;
 	padding: 1% 2%;
@@ -470,7 +477,7 @@ button.delete.picture {
 		}
 		.item-quantity, .item-name, .item-status {
 			font-size: 42px;
-			line-height: 60px;
+			line-height: 56px;
 		}
 		.item-quantity {
 			margin: 0;
@@ -542,7 +549,7 @@ button.delete.picture {
 
 	.item-quantity, .item-name, .item-status {
 		font-size: 21px;
-		line-height: 30px;
+		line-height: 28px;
 	}
 	.item-quantity {
 		float: left;
