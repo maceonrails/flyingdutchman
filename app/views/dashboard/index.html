@@ -8,7 +8,8 @@
             <div class="column" style="padding-bottom: 30px;">
               <h3>Revenue</h3>
               <div class="my floated right">
-                <dropdown title="This Week" ng-model="$root.graphRevenue" open="false" class="" required name="role">
+                <dropdown title="Today" ng-model="$root.graphRevenue" open="false" class="" required name="role">
+                    <dropdown-group title="today" value="today">Today</dropdown-group>
                     <dropdown-group title="this_week" value="this_week">This Week</dropdown-group>
                     <dropdown-group title="this_month" value="this_month">This Month</dropdown-group>
                     <dropdown-group title="last_three_months" value="last_three_months">Last Three Months</dropdown-group>
@@ -37,7 +38,8 @@
             <div class="column" style="padding-bottom: 30px;">
               <h3>Orders</h3>
               <div class="my floated right">
-                <dropdown title="This Week" ng-model="$root.graphOrder" open="false" class="" required name="role">
+                <dropdown title="Today" ng-model="$root.graphOrder" open="false" class="" required name="role">
+                    <dropdown-group title="today" value="today">Today</dropdown-group>
                     <dropdown-group title="this_week" value="this_week">This Week</dropdown-group>
                     <dropdown-group title="this_month" value="this_month">This Month</dropdown-group>
                     <dropdown-group title="last_three_months" value="last_three_months">Last Three Months</dropdown-group>

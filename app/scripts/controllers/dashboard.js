@@ -10,8 +10,8 @@
 angular.module('erestoApp')
   .controller('DashboardCtrl', function ($rootScope, $scope, $stateParams, Order, lodash, Restangular) {
     $rootScope.token        = $stateParams.token; // set token from params
-    $rootScope.graphRevenue = 'this_week';
-    $rootScope.graphOrder   = 'this_week';
+    $rootScope.graphRevenue = 'today';
+    $rootScope.graphOrder   = 'today';
     $scope.exampleData      = [];
 
     var get_product_selling_details = function(){
