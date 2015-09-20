@@ -186,7 +186,7 @@ App
             var doneList = jQuery(element).siblings('li.item.done').andSelf().length;
             var undoneList = jQuery(element).siblings('li.item').andSelf().length;
             var order_id = jQuery(element).attr('order-id');
-            
+
             Order.updateItemServed(order_id);
 
             if (doneList===undoneList) {
@@ -204,7 +204,8 @@ App
         restrict: 'C',
         link: function (scope, element) {
           element.bind('click', function(){
-	    jQuery(element).hide();
+	          jQuery(element).hide();
+            jQuery('.darken').removeClass('darken');
             $rootScope.reload();
             jQuery(element).closest('.order-container').remove();
           });
