@@ -70,6 +70,10 @@ angular.module('erestoApp')
       });
     };
 
+    $rootScope.reload  = function(){
+      _reloadOrders();
+    };
+
     $rootScope.interval = $interval(_reloadOrders, 30000);
     _reloadOrders();
   });
