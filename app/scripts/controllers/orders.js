@@ -76,6 +76,6 @@ angular.module('erestoApp')
       _reloadOrders();
     };
 
-    // $rootScope.interval = $interval(_reloadOrders, 30000);
+     $rootScope.interval = $interval(_reloadOrders, 30000);
     _reloadOrders();
   });
