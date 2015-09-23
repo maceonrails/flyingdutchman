@@ -17,17 +17,17 @@ angular.module('erestoApp')
     $scope.doLogin = function(){
       User.authenticate($scope.user)
         .then(function(response){
-          if (response.role !== 'chef' || response.role !== 'bartender'){
+          if (response.role === 'chef' || response.role == 'bartender'){
             localStorageService.set('token', response.token);
             $timeout(function(){
               $state.go('app.restricted.orders', { token: response.token });
             }, 200);
           }else{
-            $rootScope.$broadcast('auth-error');
+            $scope.signInError = 'Only chef and bartender can use this application.';
           }
-        }, function(){
-          $scope.user = {};
-          $rootScope.$broadcast('auth-error');
+        }, function(res){
+          var message = res.data.message === 'User parameter is required' ? 'Email and password cannot be blank' : res.data.message;
+          $scope.signInError = 'Oops, ' + message;
         });
     };
   });

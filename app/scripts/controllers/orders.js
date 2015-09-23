@@ -8,7 +8,7 @@
  * Controller of the erestoApp
  */
 angular.module('erestoApp')
-  .controller('OrdersCtrl', function ($scope, $rootScope, Order, $interval) {
+  .controller('OrdersCtrl', function ($scope, $rootScope, Order, $interval, $state) {
     $rootScope.orders      = [];
     $rootScope.controller  = 'Orders';
 
@@ -61,19 +61,21 @@ angular.module('erestoApp')
             res.orders[i].products.splice(deleteIdx[k],1);
           }
 
-          if (have_food && unserved > 0){
-            orders.push(res.orders[i]);
+          if (have_food && !order.created){
+            var ordObj      = res.orders[i];
+            ordObj.unserved = unserved;
+            orders.push(ordObj);
           }
         }
         $scope.orders = orders;
-	console.log(orders);
       });
     };
 
     $rootScope.reload  = function(){
+      console.log('reloaded');
       _reloadOrders();
     };
 
-    $rootScope.interval = $interval(_reloadOrders, 30000);
+    // $rootScope.interval = $interval(_reloadOrders, 30000);
     _reloadOrders();
   });

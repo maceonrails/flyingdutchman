@@ -16,5 +16,9 @@ angular.module('erestoApp')
         return Restangular.all('order_items').one(id, 'toggle_served')
           .customPUT({}, null, {}, {});
       },
+      updateOrderServed: function(id) {
+        return Restangular.all('orders').one(id, 'toggle_served')
+          .customPUT({}, null, {}, {});
+      },
     };
   });

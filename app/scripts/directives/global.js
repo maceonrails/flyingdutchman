@@ -191,6 +191,7 @@ App
 
             if (doneList===undoneList) {
               console.log('done');
+              jQuery(element).closest('.order-container').find('.darken').remove();
               jQuery(element).closest('.order-container')
                 .append('<div class="darken"></div>')
                 .children('.btn-done').show();
@@ -199,15 +200,27 @@ App
         }
       };
   })
-  .directive('btnDone', function($rootScope){
+  .directive('btnDone', function($rootScope, Order, $timeout){
       return {
         restrict: 'C',
         link: function (scope, element) {
           element.bind('click', function(){
-	          jQuery(element).hide();
-            jQuery('.darken').removeClass('darken');
-            $rootScope.reload();
-            jQuery(element).closest('.order-container').remove();
+            var order_id = jQuery(element).attr('order-id');
+            var update   = function(){
+              Order.updateOrderServed(order_id)
+                .then(function(){
+                  $timeout(function(){
+                    $rootScope.reload();
+                  }, 500);
+                });
+            };
+
+            try {
+              update();
+            }
+            catch(err) {
+              update();
+            }
           });
         }
       };

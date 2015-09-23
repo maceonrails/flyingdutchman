@@ -32,7 +32,7 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://192.168.1.251/v1');
+      .setBaseUrl('http://localhost:3000/v1');
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
