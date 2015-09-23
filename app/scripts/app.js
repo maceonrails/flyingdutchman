@@ -73,7 +73,7 @@ App
       return response;
     };
   })
-  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress) {
+  .run(function($rootScope, $state, $stateParams, Authenticate, Cancan, ngProgress, $window) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       ngProgress.start();
 
@@ -89,6 +89,6 @@ App
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); });
+    $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); $window.scrollTo(0,0);});
     $rootScope.$on('$stateChangeError', function(){ ngProgress.complete(); });
   });

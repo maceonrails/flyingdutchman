@@ -21,8 +21,10 @@
           <table class="ui compact celled table form">
             <thead>
               <tr>
+                <th>PAX</th>
                 <th>Name</th>
                 <th>Servant</th>
+                <th>Cashier</th>
                 <th>Table</th>
                 <th>Dine In</th>
                 <th>Take Away</th>
@@ -35,8 +37,10 @@
             </thead>
             <tbody>
               <tr ng-repeat="order in orders">
+                <td>{{order.person}}</td>
                 <td>{{order.name}}</td>
                 <td>{{order.servant.name}}</td>
+                <td>{{order.cashier.name}}</td>
                 <td>{{order.table.name}}</td>
                 <td>{{order.products | dinein}}</td>
                 <td>{{order.products | takeaway}}</td>
@@ -51,7 +55,7 @@
             </tbody>
             <tfoot class="full-width">
               <tr>
-                <th colspan="10">
+                <th colspan="12">
                   <div class="ui pagination menu right floated">
                     <a class="active item" ng-repeat="page in [] | range:total" ng-if="total > 1" ng-click="dataPage(page+1)">
                       {{page + 1}}
@@ -77,6 +81,9 @@
         <form class="ui form entry-form">
           <div class="three fields">
             <div class="field">
+              <label>PAX</label>
+              <p>{{selected.person}}</p>
+              <br>
               <label>Name</label>
               <p>{{selected.name}}</p>
               <div class="message"></div>
@@ -84,6 +91,9 @@
             <div class="field">
               <label>Servant</label>
               <p>{{selected.servant.name}}</p>
+              <br>
+              <label>Cashier</label>
+              <p>{{selected.cashier.name}}</p>
               <div class="message"></div>
             </div>
             <div class="field">
