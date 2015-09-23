@@ -30,7 +30,7 @@
             </div>
             <div class="field required">
               <label>Email</label>
-              <input name="email" placeholder="Phone number" type="email" ng-model="selected.email" required number>
+              <input name="email" placeholder="Email" type="email" ng-model="selected.email" required number>
             </div>
           </div>
           <div class="two fields">
@@ -73,9 +73,10 @@
           </div>
           <br>
 
-          <div class="ui error message">
-            <div class="header">We noticed some issues</div>
+          <div class="ui error message" ng-class="{visible: errorMessage}">
+            <div class="header">{{errorMessage}}</div>
           </div>
+
           <div class="ui white right labeled icon button" ng-click="saveData()">
             <i class="save icon"></i>
             <span ng-if="formType === 'existing'"> Update</span>

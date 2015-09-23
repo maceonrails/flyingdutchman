@@ -119,4 +119,16 @@ angular.module('erestoApp')
     var _removeDimmer = function(){
       jQuery('.content-workspace > .dimmer').removeClass('active');
     };
+
+    $scope.deleteData = function(){
+      Outlet.delete($scope.selected).then(function(res){
+        $rootScope.initial();
+        $scope.errorMessage = null;
+        _removeDimmer();
+      }, function(err){
+        $scope.errorMessage = err.data.message;
+        _removeDimmer()
+      });
+      
+    }
   });

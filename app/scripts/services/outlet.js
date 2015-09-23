@@ -34,6 +34,10 @@ angular.module('erestoApp')
         return Restangular.one('outlets', outlet.id)
           .customPUT({'outlet': outlet}, null, {}, {});
       },
+      delete: function(outlet) {
+        jQuery('.content-workspace > .dimmer').addClass('active');
+        return Restangular.one('outlets', outlet.id).remove();
+      },
       handle422: function(errors){
         for (var error in errors){
           var title = error.charAt(0).toUpperCase() + error.slice(1);
