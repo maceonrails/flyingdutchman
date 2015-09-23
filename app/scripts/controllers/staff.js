@@ -44,7 +44,7 @@ angular.module('erestoApp')
             }
           });
 
-      Outlet.getData(page)
+      Outlet.getAll()
         .then(
           function(res){
             if (res.outlets !== undefined) {

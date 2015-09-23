@@ -90,10 +90,13 @@ angular.module('angularify.semantic.dropdown', [])
       scope.element = element;
       scope.$watch('model', function (value) {
         // update title or reset the original title if its empty
+        var _title = ''; 
         if (value !== undefined && $('.item.'+value).children()[0] !== undefined){
-          var _title = $('.item.'+value).children()[0].innerHTML;
-          DropDownController.update_title(_title);
+          _title = $('.item.'+value).children()[0].innerHTML;
+        }else {
+          _title = jQuery(element).attr('title');
         }
+        DropDownController.update_title(_title);
       });
 
       /*
