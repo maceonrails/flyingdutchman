@@ -208,12 +208,22 @@ App
           element.bind('click', function(){
             var order_id = jQuery(element).attr('order-id');
             var update   = function(){
-              Order.updateOrderServed(order_id)
+              
+              if ($rootScope.user.role === 'chef'){
+                Order.updateOrderServed(order_id)
+                  .then(function(){
+                    $timeout(function(){
+                      $rootScope.reload();
+                    }, 500);
+                  });
+             }else{
+               Order.updatePantryServed(order_id)
                 .then(function(){
                   $timeout(function(){
                     $rootScope.reload();
                   }, 500);
                 });
+             }
             };
 
             try {
