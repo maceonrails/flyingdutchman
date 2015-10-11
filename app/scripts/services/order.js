@@ -20,5 +20,9 @@ angular.module('erestoApp')
         return Restangular.all('orders').one(id, 'toggle_served')
           .customPUT({}, null, {}, {});
       },
+      updatePantryServed: function(id) {
+        return Restangular.all('orders').one(id, 'toggle_pantry')
+          .customPUT({}, null, {}, {});
+      },
     };
   });
