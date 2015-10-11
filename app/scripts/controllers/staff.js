@@ -69,6 +69,7 @@ angular.module('erestoApp')
     };
 
     $scope.saveData = function(){
+      $scope.selected.active = true;
       var form = jQuery('.entry-form');
       form.validate();
       if (form.valid()){
@@ -107,6 +108,30 @@ angular.module('erestoApp')
             });
         }
       }
+    };
+
+    $scope.deleteData = function(){
+      $scope.selected.active = false;
+      User.update($scope.selected)
+        .then(function(res){
+          $scope.users.splice($scope.selectedID, 1);
+          if ( $scope.users.length > 0 ){
+            $scope.selectedID = 0;
+            $scope.selectUser(0);
+          }else {
+            $scope.selected       = {};
+            $scope.formType       = 'new';
+            $scope.selected.result= '';
+          }
+          _changeDateSelected();
+          _removeDimmer();
+        },
+        function(err){
+          if (err.status === 422){
+            User.handle422(err.data);
+            _removeDimmer();
+          }
+        });
     };
 
     var _removeDimmer = function(){

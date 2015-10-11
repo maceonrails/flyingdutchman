@@ -6,7 +6,8 @@
             <i class="ticket icon"></i>
             <div class="content">
               <div class="header">{{discount.name || 'No name'}}</div>
-              <div class="description"><b>{{discount.product}}</b>, Rp. {{discount.amount}}</div>
+              <div class="description" ng-if="discount.percentage"><b>{{discount.products.length}} Products</b>,  {{discount.percentage}}%</div>
+              <div class="description" ng-if="!discount.percentage"><b>{{discount.products.length}} Products</b>,  Rp. {{discount.amount}}</div>
             </div>
           </div>
         </div>
@@ -46,27 +47,63 @@
           </div>
 
           <div class="two fields">
-            <div class="field required">
-              <label>Product</label>
-              <select ng-model="selected.product_id">
-                <option ng-repeat="c in products" value="{{c.id}}" ng-selected="selected.product_id == c.id">
-                  {{c.name}}
-                </option>
-              </select>
+            <div class="field">
+              <div class="two fields">
+                <div class="field required">
+                  <label>Start time</label>
+                  <select title="Start time" ng-model="selected.start_time" open="false" class="" required name="start_time" required>
+                      <option value="{{c}}" ng-repeat="c in time">{{c}}</option>
+                  </select>
+                </div>
+                <div class="field required">
+                  <label>End time</label>
+                  <select title="End time" ng-model="selected.end_time" open="false" class="" required name="end_time" required>
+                      <option value="{{c}}" ng-repeat="c in time">{{c}}</option>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="field required">
-              <label>Amount</label>
-              <input name="amount" placeholder="Amount" type="text" ng-model="selected.amount" required>
+              <label>Days</label>
+              <select chosen
+                      name="days"
+                      multiple
+                      ng-model="selected.days"
+                      data-placeholder="Days"
+                      allow-single-deselect="true"
+                      ng-options="value for value in days">
+              </select>
             </div>
           </div>
 
-          <div class="two fields" ng-if="selected.product_id">
+          <div class="field required">
+            <label>Product</label>
+            <select chosen
+                    name="products"
+                    multiple
+                    ng-model="selected.products"
+                    disable-search="false"
+                    data-placeholder="Product"
+                    allow-single-deselect="true"
+                    ng-options="value.id as value.name for value in products">
+            </select>
+          </div>
+
+          <div class="two fields">
             <div class="field">
-              <label>Percentage to amount calculator</label>
-              <input name="amount" placeholder="Percentage" type="number" ng-model="selected.percentage" required>
+              <label>Choose discount type</label>
+              <select ng-model="discountType" ng-change="checkType()">
+                <option value="percentage">Percentage</option>
+                <option value="amount">Amount</option>
+              </select>
             </div>
-            <div class="field required transparent">
+            <div class="field required" ng-if="discountType === 'amount'">
               <label>Amount</label>
+              <input name="amount" placeholder="Amount" type="text" ng-model="selected.amount" required>
+            </div>
+            <div class="field required" ng-if="discountType === 'percentage'">
+              <label>Percentage</label>
+              <input name="amount" placeholder="Percentage" type="text" ng-model="selected.percentage" required>
             </div>
           </div>
 

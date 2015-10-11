@@ -105,7 +105,7 @@
             <span ng-if="formType === 'new'"> Save</span>
           </div>
 
-          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="saveData()" ng-confirm="Are you sure?">
+          <div ng-if="selected.id !== user.id && formType !== 'new'" class="ui red right labeled icon button" ng-click="deleteData()" ng-confirm="Are you sure?">
             <i class="close icon"></i> Deactivate
           </div>
         </form>
