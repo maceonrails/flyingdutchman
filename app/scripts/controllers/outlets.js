@@ -116,6 +116,14 @@ angular.module('erestoApp')
       }
     };
 
+    $scope.success = function () {
+                console.log('Copied!');
+            };
+
+            $scope.fail = function (err) {
+                console.error('Error!', err);
+            };
+
     var _removeDimmer = function(){
       jQuery('.content-workspace > .dimmer').removeClass('active');
     };
@@ -129,6 +137,6 @@ angular.module('erestoApp')
         $scope.errorMessage = err.data.message;
         _removeDimmer()
       });
-      
+
     }
   });

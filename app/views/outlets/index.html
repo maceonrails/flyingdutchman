@@ -6,7 +6,10 @@
             <i class="building icon"></i>
             <div class="content">
               <div class="header">{{outlet.name || 'No name'}}</div>
-              <div class="description"><b>{{outlet.id}}</b>, {{outlet.email}}</div>
+              <div class="description"><b id="id-{{outlet.id}}">{{outlet.id}}</b>, {{outlet.email}}</div>
+              <div>
+                <button clipboard text="outlet.id" class="copy">copy outlet id</button>
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +69,7 @@
                     <div class="ui button red" ng-click="removeTax($index)">Remove</div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
             <a href="" ng-click="addTax()" class="ui button blue">Add New</a>

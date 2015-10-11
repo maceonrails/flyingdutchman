@@ -20,7 +20,8 @@ var App = angular
     'ngImgCrop',
     'localytics.directives',
     'ngLodash',
-    'nvd3ChartDirectives'
+    'nvd3ChartDirectives',
+    'angular-clipboard'
   ]);
 
 App
