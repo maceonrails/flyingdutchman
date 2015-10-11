@@ -19,7 +19,9 @@ var App = angular
     'ngFileUpload',
     'ngImgCrop',
     'ngLodash',
-    'nvd3ChartDirectives'
+    'nvd3ChartDirectives',
+    'ui.timepicker',
+    'localytics.directives'
   ]);
 
 App
@@ -80,7 +82,6 @@ App
       // track the state the user wants to go to; authorization service needs this
       $rootScope.toState       = toState;
       $rootScope.toStateParams = toStateParams;
-      $rootScope.search        = null;
       // if the principal is resolved, do an authorization check immediately. otherwise,
       // it'll be done when the state it resolved.
       if (Cancan.isIdentityResolved()) {
@@ -91,4 +92,10 @@ App
 
     $rootScope.$on('$stateChangeSuccess', function(){ ngProgress.complete(); $window.scrollTo(0,0);});
     $rootScope.$on('$stateChangeError', function(){ ngProgress.complete(); });
+  });
+
+  angular.module('ui.timepicker').value('uiTimepickerConfig',{
+    step: 10,
+    asMoment: true,
+    timeFormat: 'H:i',
   });

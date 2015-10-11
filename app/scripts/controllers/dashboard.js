@@ -21,7 +21,7 @@ angular.module('erestoApp')
           var chunked  = lodash.chunk(ordered, 5);
           var chunked2 = lodash.chunk(ordered.reverse(), 5);
           $scope.tops  = lodash.first(chunked);
-          $scope.bots  = lodash.last(chunked2);
+          $scope.bots  = lodash.first(chunked2);
         });
     };
 
