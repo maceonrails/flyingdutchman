@@ -60,12 +60,21 @@ angular.module('erestoApp')
           for (var k = deleteIdx.length - 1; k >= 0; k--) {
             res.orders[i].products.splice(deleteIdx[k],1);
           }
-
-          if (have_food && !order.created){
-            var ordObj      = res.orders[i];
-            ordObj.unserved = unserved;
-            orders.push(ordObj);
+          
+          if (food){
+            if (have_food && !order.created){
+              var ordObj      = res.orders[i];
+              ordObj.unserved = unserved;
+              orders.push(ordObj);
+            }  
+          }else {
+            if (have_food && !order.pantry_created){
+              var ordObj      = res.orders[i];
+              ordObj.unserved = unserved;
+              orders.push(ordObj);
+            }
           }
+          
         }
         $scope.orders = orders;
       });
