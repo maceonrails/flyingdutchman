@@ -177,24 +177,25 @@ App
       return input;
     };
   })
-  .directive('item', function(Order){
+  .directive('item', function(Order, lodash){
       return {
         restrict: 'C',
         link: function (scope, element) {
           element.bind('click', function(){
-            jQuery(element).toggleClass('done');
             var doneList = jQuery(element).siblings('li.item.done').andSelf().length;
             var undoneList = jQuery(element).siblings('li.item').andSelf().length;
             var order_id = jQuery(element).attr('order-id');
+            var order_item_id = jQuery(element).attr('order-item-id');
 
-            Order.updateItemServed(order_id);
+            Order.updateItemServed(order_item_id);
+            var order = lodash.find(scope.orders, function(n){ return n.id === order_id; });
+            var item  = lodash.find(order.products, function(n){ return n.order_item_id === order_item_id; });
+            item.served = !item.served;
 
             if (doneList===undoneList) {
-              console.log('done');
-              jQuery(element).closest('.order-container').find('.darken').remove();
-              jQuery(element).closest('.order-container')
-                .append('<div class="darken"></div>')
-                .children('.btn-done').show();
+              order.unserved = false;
+            } else {
+              order.unserved = true;
             }
           });
         }
