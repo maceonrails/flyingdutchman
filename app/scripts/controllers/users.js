@@ -14,6 +14,7 @@ angular.module('erestoApp')
     $scope.formType       = 'existing';
     $scope.selectedID     = null;
     $rootScope.controller = 'users';
+    $rootScope.total      = 1;
 
     // ng init
     $rootScope.initial = function(xpage){

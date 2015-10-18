@@ -17,6 +17,7 @@ angular.module('erestoApp')
     $rootScope.controller = 'users';
     $rootScope.search     = false;
     $rootScope.canAdd     = false;
+    $rootScope.total      = 1;
 
     $scope.roles = [
       {title: 'Owner', value: 'owner'},

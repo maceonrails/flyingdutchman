@@ -51,6 +51,30 @@ angular.module('erestoApp')
       }
     });
 
+    var _reloadcustomer = function(){
+      Order.getGraphPax({timeframe: $rootScope.graphCustomer}).then(function(res){
+        var grouped3 = lodash.groupBy(res, function(n) { return n[0]; });
+        var results3 = [];
+        lodash.forEach(grouped3, function(n, key) {
+          var tmp3 = [];
+          tmp3[0]  = parseInt(key);
+          tmp3[1]  = lodash.sum(n, function(b){ return b[1]; });
+          results3.push(tmp3);
+        });
+
+        $scope.exampleData3  = [{key: 'Customer', values: results3}];
+        $scope.totalCustomer = lodash.sum(results3, function(n){ return n[1];});
+      });
+    };
+
+    _reloadcustomer();
+
+    $rootScope.$watch('graphCustomer', function(oldval, newval){
+      if (oldval !== newval){
+        _reloadcustomer();
+      }
+    });
+
     var _reloadOrder = function(){
       Order.getGraphOrder({timeframe: $rootScope.graphOrder}).then(function(res){
         var grouped = lodash.groupBy(res, function(n) { return n[0]; });

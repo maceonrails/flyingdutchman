@@ -11,6 +11,9 @@ angular.module('erestoApp')
       },
       getGraphOrder: function(query) {
         return Restangular.one('orders', 'graph_by_order').customGET('', query);
+      },
+      getGraphPax: function(query) {
+        return Restangular.one('orders', 'graph_by_pax').customGET('', query);
       }
     };
   });

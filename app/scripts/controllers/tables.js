@@ -15,6 +15,7 @@ angular.module('erestoApp')
     $scope.selectedID     = null;
     $rootScope.controller = 'tables';
     $rootScope.canAdd     = true;
+    $rootScope.total      = 1;
 
 
     // ng init

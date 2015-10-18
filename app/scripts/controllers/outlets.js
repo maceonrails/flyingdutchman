@@ -15,6 +15,7 @@ angular.module('erestoApp')
     $scope.selectedID     = null;
     $rootScope.controller = 'outlets';
     $rootScope.canAdd     = false;
+    $rootScope.total      = 1;
 
     // ng init
     $rootScope.initial = function(xpage){

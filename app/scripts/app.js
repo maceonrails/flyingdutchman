@@ -34,7 +34,11 @@ App
       .setStorageCookieDomain(domain);
 
     RestangularProvider
-      .setBaseUrl('http://192.168.1.251/v1');
+      .setBaseUrl('http://192.168.1.251/v1')
+      // .setBaseUrl('http://localhost:3000/v1')
+      .setDefaultHttpFields({
+        timeout: 600000
+      });
 
     $httpProvider.interceptors.push('APIInterceptor');
   })
@@ -82,6 +86,7 @@ App
       // track the state the user wants to go to; authorization service needs this
       $rootScope.toState       = toState;
       $rootScope.toStateParams = toStateParams;
+      $rootScope.page          = 1;
       // if the principal is resolved, do an authorization check immediately. otherwise,
       // it'll be done when the state it resolved.
       if (Cancan.isIdentityResolved()) {
